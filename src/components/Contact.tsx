@@ -8,6 +8,10 @@ type FormStatus = "idle" | "sending" | "success" | "error";
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [firmType, setFirmType] = useState("");
+  const [maturity, setMaturity] = useState("");
+  const [workflows, setWorkflows] = useState("");
+  const [pilot, setPilot] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -21,7 +25,15 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({
+          name,
+          email,
+          firmType,
+          maturity,
+          workflows,
+          pilot,
+          message,
+        }),
       });
 
       if (!res.ok) {
@@ -32,6 +44,10 @@ export default function Contact() {
       setStatus("success");
       setName("");
       setEmail("");
+      setFirmType("");
+      setMaturity("");
+      setWorkflows("");
+      setPilot("");
       setMessage("");
     } catch (err) {
       setStatus("error");
@@ -54,21 +70,34 @@ export default function Contact() {
           <div>
             <AnimatedSection>
               <span className="font-mono text-[11px] uppercase tracking-[0.04em] text-white/30">
-                Contact
+                Get started
               </span>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Let&apos;s build
+                Let&apos;s work
                 <br />
-                something great
+                together
               </h2>
               <p className="mt-4 text-base leading-relaxed text-white/50 max-w-sm">
-                Have an idea? Modernizing a product? Exploring what AI can do
-                for your business? Let&apos;s talk.
+                Share with us some information about your firm and the workflows
+                you&apos;d like help automating. We&apos;ll get back to you with
+                next steps.
               </p>
+              <div className="mt-8 grid gap-3 text-sm text-white/55">
+                {[
+                  "Intro call",
+                  "AI readiness assessment",
+                  "Implementation plan",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <span className="status-dot live" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
 
               <div className="mt-8 flex flex-col gap-3">
                 <a
-                  href="mailto:hhirshland@gmail.com"
+                  href="mailto:henry@hyperactivestudio.xyz"
                   className="flex items-center gap-3 text-sm text-white/60 transition-colors hover:text-white group"
                 >
                   <div className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] transition-colors group-hover:border-white/20">
@@ -76,7 +105,7 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                     </svg>
                   </div>
-                  hhirshland@gmail.com
+                  henry@hyperactivestudio.xyz
                 </a>
               </div>
             </AnimatedSection>
@@ -90,7 +119,7 @@ export default function Contact() {
                 <div className="flex items-center gap-2 mb-5 pb-4 border-b border-white/[0.06]">
                   <span className="status-dot live" />
                   <span className="font-mono text-[11px] uppercase tracking-[0.04em] text-white/30">
-                    new_project.init
+                    get_started.init
                   </span>
                 </div>
 
@@ -101,9 +130,9 @@ export default function Contact() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                       </svg>
                     </div>
-                    <p className="text-sm font-medium text-white">Message sent!</p>
+                    <p className="text-sm font-medium text-white">Thanks - message sent.</p>
                     <p className="mt-1 text-xs text-white/40">
-                      We&apos;ll get back to you soon.
+                      We&apos;ll get back to you with next steps.
                     </p>
                     <button
                       type="button"
@@ -143,16 +172,100 @@ export default function Contact() {
                         />
                       </div>
                     </div>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label className="font-mono text-[10px] uppercase tracking-[0.05em] text-white/25 mb-1.5 block">
+                          Firm type
+                        </label>
+                        <select
+                          required
+                          value={firmType}
+                          onChange={(e) => setFirmType(e.target.value)}
+                          className="w-full rounded-md border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-white transition-colors focus:border-white/20 focus:outline-none focus:ring-0"
+                        >
+                          <option value="" className="bg-foreground">
+                            Select one
+                          </option>
+                          <option value="Private equity" className="bg-foreground">
+                            Private equity
+                          </option>
+                          <option value="Venture capital" className="bg-foreground">
+                            Venture capital
+                          </option>
+                          <option value="Fund of funds" className="bg-foreground">
+                            Fund of funds
+                          </option>
+                          <option value="Family office" className="bg-foreground">
+                            Family office
+                          </option>
+                          <option value="Other investment firm" className="bg-foreground">
+                            Other investment firm
+                          </option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="font-mono text-[10px] uppercase tracking-[0.05em] text-white/25 mb-1.5 block">
+                          AI maturity
+                        </label>
+                        <select
+                          required
+                          value={maturity}
+                          onChange={(e) => setMaturity(e.target.value)}
+                          className="w-full rounded-md border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-white transition-colors focus:border-white/20 focus:outline-none focus:ring-0"
+                        >
+                          <option value="" className="bg-foreground">
+                            Select one
+                          </option>
+                          <option value="None" className="bg-foreground">
+                            None
+                          </option>
+                          <option value="Beginner" className="bg-foreground">
+                            Beginner
+                          </option>
+                          <option value="Intermediate" className="bg-foreground">
+                            Intermediate
+                          </option>
+                          <option value="Advanced" className="bg-foreground">
+                            Advanced
+                          </option>
+                        </select>
+                      </div>
+                    </div>
                     <div>
                       <label className="font-mono text-[10px] uppercase tracking-[0.05em] text-white/25 mb-1.5 block">
-                        Project details
+                        Highest-friction workflows
                       </label>
                       <textarea
                         required
+                        value={workflows}
+                        onChange={(e) => setWorkflows(e.target.value)}
+                        placeholder="Investment memos, screeners, portfolio monitoring, legal diligence..."
+                        rows={3}
+                        className="w-full resize-none rounded-md border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-white placeholder:text-white/20 transition-colors focus:border-white/20 focus:outline-none focus:ring-0"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-mono text-[10px] uppercase tracking-[0.05em] text-white/25 mb-1.5 block">
+                        Desired first workflow
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={pilot}
+                        onChange={(e) => setPilot(e.target.value)}
+                        placeholder="What should be running first?"
+                        className="w-full rounded-md border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-white placeholder:text-white/20 transition-colors focus:border-white/20 focus:outline-none focus:ring-0"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-mono text-[10px] uppercase tracking-[0.05em] text-white/25 mb-1.5 block">
+                        Additional context
+                      </label>
+                      <textarea
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        placeholder="Tell us about your idea..."
-                        rows={4}
+                        placeholder="Any timing, constraints, or stakeholders we should know about?"
+                        rows={3}
                         className="w-full resize-none rounded-md border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-white placeholder:text-white/20 transition-colors focus:border-white/20 focus:outline-none focus:ring-0"
                       />
                     </div>
@@ -166,7 +279,7 @@ export default function Contact() {
                       disabled={status === "sending"}
                       className="mt-1 rounded-md bg-white px-6 py-2.5 text-[13px] font-semibold text-foreground transition-all duration-150 hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {status === "sending" ? "Sending..." : "Send message"}
+                      {status === "sending" ? "Sending..." : "Get Started"}
                     </button>
                   </form>
                 )}

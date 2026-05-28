@@ -6,33 +6,39 @@ import AnimatedSection from "./AnimatedSection";
 const differentiators = [
   {
     id: "01",
-    title: "AI-native",
-    description: "Not experimenting with AI—operating at the edge. Woven into how we design, build, and ship.",
+    title: "Engineering that understands operations",
+    description:
+      "We turn ambiguous fund processes into interfaces, data flows, model calls, review states, and shipping plans.",
   },
   {
     id: "02",
-    title: "End-to-end",
-    description: "Strategy, design, engineering, analytics, growth. One team, zero hand-offs.",
+    title: "Fund workflow fluency",
+    description:
+      "Memos, screeners, portfolio monitoring, diligence, meeting prep, and CRM context are the starting vocabulary, not a discovery surprise.",
   },
   {
     id: "03",
-    title: "Outcome-driven",
-    description: "You don't get decks and wireframes. You get shipped products that work.",
+    title: "Human review stays central",
+    description:
+      "High-risk decisions stay with people. The system handles drafts, research, checks, routing, and context assembly.",
   },
   {
     id: "04",
-    title: "Ruthless prioritization",
-    description: "Focus on leverage and driving outcomes. Unlock velocity by prioritizing what matters most.",
+    title: "Built on your stack",
+    description:
+      "We integrate with the tools your team already uses instead of forcing a migration before value is proven.",
   },
   {
     id: "05",
-    title: "Fast but composed",
-    description: "We move in weeks, not quarters. Speed without chaos, urgency without cutting corners.",
+    title: "Model agnostic by design",
+    description:
+      "Each step can use the right model for the job, cost profile, and quality bar. The harness is more important than any single provider.",
   },
   {
     id: "06",
-    title: "Startup-trained",
-    description: "6+ years shipping in high-pressure environments. We know what matters and what doesn't.",
+    title: "Improves from use",
+    description:
+      "Feedback, evals, saved runs, and house style turn one workflow into reusable institutional knowledge.",
   },
 ];
 
@@ -46,20 +52,19 @@ export default function About() {
             <AnimatedSection>
               <span className="annotation">About</span>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                Serious about outcomes.
+                A technical partner for
                 <br />
-                <span className="text-muted">Curious about methods.</span>
+                <span className="text-muted">operational redesign.</span>
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted">
-                We&apos;re results-driven — every engagement starts with
-                understanding where your team is today and intimately learning the
-                problems you&apos;re facing. No assumptions, no generic playbooks.
+                Most firms do not need another AI strategy deck. They need
+                someone to understand the work, decide where AI belongs, and
+                build the system carefully enough that people trust it.
               </p>
               <p className="mt-4 text-base leading-relaxed text-muted">
-                From there, we define what successful outcomes actually look like —
-                then use our deep domain knowledge and experience deploying AI
-                tools to drive those outcomes. Strategy without execution is
-                just a slide deck. We ship the real thing.
+                Hyperactive brings product judgment and engineering execution.
+                We embed with your team, ship in controlled increments, and
+                keep the system improving after launch.
               </p>
 
               {/* Highlighted callout */}
@@ -78,7 +83,8 @@ export default function About() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 <span className="text-sm font-medium text-foreground">
-                  You don&apos;t just get ideas. You get shipped outcomes.
+                  The deliverable is not a recommendation. It is a workflow
+                  running inside the firm.
                 </span>
               </motion.div>
             </AnimatedSection>

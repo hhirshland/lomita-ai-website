@@ -3,9 +3,11 @@
 import AnimatedSection from "./AnimatedSection";
 
 const clients = [
-  { name: "Prehype", type: "Venture Studio" },
-  { name: "Resolute Ventures", type: "Venture Fund" },
-  { name: "Coursecast", type: "Golf Startup" },
+  { name: "Selby Lane", type: "Fund of Funds", href: "https://selbylane.com/" },
+  { name: "Resolute Ventures", type: "Venture Fund", href: "https://www.resolute.vc/" },
+  { name: "Prehype", type: "Venture Studio", href: "https://prehype.com/" },
+  { name: "Coursecast", type: "Golf Startup", href: "https://coursecast.golf/" },
+  { name: "Made by Marge", type: "CPG Brand", href: "https://www.madebymarge.com/" },
 ];
 
 export default function Clients() {
@@ -23,14 +25,19 @@ export default function Clients() {
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:gap-x-20">
           {clients.map((client, i) => (
             <AnimatedSection key={client.name} delay={i * 0.08}>
-              <div className="flex flex-col items-center gap-1 group cursor-default">
+              <a
+                href={client.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1 group"
+              >
                 <span className="text-lg font-semibold tracking-tight text-muted-light transition-colors duration-150 group-hover:text-foreground">
                   {client.name}
                 </span>
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-light/60">
                   {client.type}
                 </span>
-              </div>
+              </a>
             </AnimatedSection>
           ))}
         </div>

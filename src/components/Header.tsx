@@ -3,15 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
-const navLinks = [
-  { label: "Services", href: "/#services" },
-  { label: "How It Works", href: "/#process" },
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
-  { label: "Products", href: "/products" },
-  { label: "Contact", href: "/#contact" },
-];
+const navLinks: { label: string; href: string }[] = [];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,7 +30,7 @@ export default function Header() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-8">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <Image
             src="/hyperactive-logo.png"
             alt="Hyperactive Studio"
@@ -50,26 +44,26 @@ export default function Header() {
             </span>
             <span className="hidden sm:inline-block annotation opacity-50">studio</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="rounded-md px-3 py-1.5 text-[13px] font-medium text-muted transition-all duration-150 hover:text-foreground hover:bg-surface-alt"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <div className="ml-3 h-4 w-px bg-border" />
-          <a
+          <Link
             href="/#contact"
             className="ml-3 rounded-md bg-foreground px-4 py-1.5 text-[13px] font-medium text-white transition-all duration-150 hover:bg-primary-light"
           >
-            Get in touch
-          </a>
+            Get Started
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -110,22 +104,22 @@ export default function Header() {
           >
             <nav className="flex flex-col gap-0.5 px-6 py-3">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className="rounded-md px-3 py-2 text-[13px] font-medium text-muted transition-colors hover:bg-surface-alt hover:text-foreground"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
-              <a
+              <Link
                 href="/#contact"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 rounded-md bg-foreground px-4 py-2 text-center text-[13px] font-medium text-white"
               >
-                Get in touch
-              </a>
+                Get Started
+              </Link>
             </nav>
           </motion.div>
         )}

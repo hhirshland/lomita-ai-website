@@ -1,48 +1,49 @@
 "use client";
 
+import Link from "next/link";
 import AnimatedSection from "./AnimatedSection";
 
 const services = [
   {
     id: "01",
-    title: "AI Readiness Assessment",
+    title: "Workflow Map & Prioritization",
     description:
-      "Evaluate your AI maturity and pinpoint the highest-leverage opportunities across your business.",
+      "Map diligence, screening, portfolio monitoring, reporting, legal, and internal ops workflows. Identify where time, quality, and handoffs are leaking.",
     status: "live" as const,
   },
   {
     id: "02",
-    title: "AI Workflow Implementation",
+    title: "Firm Context Layer",
     description:
-      "Build and deploy AI agents, automations, and workflows that create real value.",
+      "Turn templates, source docs, investment criteria, prior work, and review standards into structured context the workflow can use.",
     status: "live" as const,
   },
   {
     id: "03",
-    title: "Web & App Development",
+    title: "AI Workflow Buildout",
     description:
-      "Modern websites, web apps, and native mobile apps built with the latest frameworks.",
+      "Build the UI, agent steps, deterministic automations, integrations, and Slack or email surfaces needed to run the workflow.",
     status: "live" as const,
   },
   {
     id: "04",
-    title: "AI Upskilling & Workshops",
+    title: "Evals & Improvement Loops",
     description:
-      "Custom training programs, knowledge bases, and workshops to make your team AI-fluent.",
+      "Measure output quality, corrections, model choice, token spend, and user feedback so the system improves after launch.",
     status: "live" as const,
   },
   {
     id: "05",
-    title: "Product Analytics",
+    title: "Adoption & Operating Rhythm",
     description:
-      "Instrument, measure, and understand what users actually do to enable smarter product decisions.",
+      "Define owners, review habits, escalation paths, and training so the workflow becomes part of how the firm works.",
     status: "live" as const,
   },
   {
     id: "06",
-    title: "Growth & Experimentation",
+    title: "Model & Vendor Strategy",
     description:
-      "A/B testing, experimentation frameworks, and data-driven growth strategy.",
+      "Stay model-agnostic. Use the right model or tool for each task instead of locking the firm into one provider too early.",
     status: "live" as const,
   },
 ];
@@ -54,10 +55,15 @@ export default function Services() {
         <AnimatedSection>
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div>
-              <span className="annotation">Services</span>
+              <span className="annotation">Capabilities</span>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                What we do
+                The pieces AI needs before it can do real work
               </h2>
+              <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
+                Useful AI workflows need more than prompts. They need context,
+                system access, review gates, evals, and a team willing to keep
+                improving the process.
+              </p>
             </div>
             <span className="tag">
               <span className="status-dot live" />
@@ -101,6 +107,26 @@ export default function Services() {
             </AnimatedSection>
           ))}
         </div>
+
+        <AnimatedSection>
+          <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-lg border border-border bg-surface-alt/60 p-5 sm:flex-row sm:items-center">
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">
+                Looking for concrete examples?
+              </h3>
+              <p className="mt-1 text-sm leading-relaxed text-muted">
+                Review the fund workflows we use as starting points for a first
+                build.
+              </p>
+            </div>
+            <Link
+              href="/finance-workflows"
+              className="inline-flex shrink-0 items-center justify-center rounded-md border border-border bg-surface px-4 py-2 text-[13px] font-medium text-foreground transition-all duration-150 hover:border-border-strong hover:bg-surface-alt"
+            >
+              View workflow library
+            </Link>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );

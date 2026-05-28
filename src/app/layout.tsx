@@ -15,23 +15,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hyperactive Studio — AI Agency for Enterprise Transformation",
+  title: "Hyperactive Studio | AI Workflows for Investment Firms",
   description:
-    "Hyperactive Studio is an AI agency that helps enterprises identify high-impact AI opportunities, implement real workflows, and upskill their teams.",
+    "Hyperactive helps private equity, venture capital, and fund-of-funds teams turn AI experiments into production workflows that save time and improve decision-making.",
   keywords: [
-    "AI agency",
-    "enterprise AI",
-    "AI readiness assessment",
-    "AI workflow implementation",
-    "AI consulting",
-    "AI upskilling",
-    "web development",
-    "app development",
+    "AI workflows for private equity",
+    "AI workflows for venture capital",
+    "AI for fund of funds",
+    "investment operations AI",
+    "agentic workflows for funds",
+    "investment memo automation",
+    "portfolio news tracking",
+    "fund diligence AI",
   ],
   openGraph: {
-    title: "Hyperactive Studio — AI Agency for Enterprise Transformation",
+    title: "Hyperactive Studio | AI Workflows for Investment Firms",
     description:
-      "We help enterprises identify high-impact AI opportunities, implement real workflows, and upskill their teams.",
+      "We help investment firms redesign high-friction workflows around firm context, AI execution, and human review.",
     type: "website",
   },
 };

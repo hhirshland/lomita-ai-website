@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -239,7 +240,7 @@ export default function ProductsPage() {
                     product studio that helps ambitious teams bring ideas to
                     life—end to end.
                   </p>
-                  <a
+                  <Link
                     href="/#contact"
                     className="mt-8 inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-[13px] font-semibold text-foreground transition-all duration-150 hover:bg-white/90"
                   >
@@ -257,7 +258,7 @@ export default function ProductsPage() {
                         d="M17 8l4 4m0 0l-4 4m4-4H3"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </AnimatedSection>

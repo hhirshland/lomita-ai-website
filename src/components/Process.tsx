@@ -7,32 +7,33 @@ import AnimatedSection from "./AnimatedSection";
 const steps = [
   {
     number: "01",
-    title: "AI Readiness Assessment",
+    title: "Map",
     description:
-      "Understand where you are today. We audit your current workflows, data infrastructure, and team capabilities to identify the highest-leverage opportunities to implement AI across your organization.",
+      "Follow the work from intake to output across email, docs, CRM, data rooms, spreadsheets, and meetings. Find the manual drag.",
   },
   {
     number: "02",
-    title: "Align on Objectives & Priorities",
+    title: "Choose",
     description:
-      "Define what success looks like and decide on the highest-leverage opportunities to pursue. We work with your team to set clear goals, prioritize by impact and feasibility, and build a roadmap we can execute on.",
+      "Score each workflow by frequency, effort, financial impact, data readiness, risk, and adoption burden. Pick the first build where value can show up quickly.",
   },
   {
     number: "03",
-    title: "Implementation",
+    title: "Build",
     description:
-      "Build, test, and deploy real AI workflows — not slide decks. We ship production-ready agents, automations, and integrations that plug into your existing tools and start delivering value immediately.",
+      "Create the context layer, agent steps, UI, deterministic automations, integrations, and delivery surface for the team.",
   },
   {
     number: "04",
-    title: "Iterate & Maintain",
+    title: "Evaluate",
     description:
-      "Measure what's working, refine what isn't, and optimize continuously. We monitor performance, gather feedback from your team, and push updates so your AI workflows get smarter over time.",
+      "Run in shadow or supervised mode. Capture corrections, compare models, track cost, and define the acceptance bar.",
   },
   {
     number: "05",
-    title: "Repeat",
-    description: "Take what we've learned and expand to the next opportunity.",
+    title: "Improve",
+    description:
+      "Use feedback, saved runs, evals, and usage data to improve the workflow before moving to the next one.",
   },
 ];
 
@@ -50,8 +51,13 @@ export default function Process() {
             <div>
               <span className="annotation">Process</span>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                How it works
+                Workflow by workflow, without disrupting the firm.
               </h2>
+              <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
+                We do not force a migration or try to automate everything at
+                once. We build on the systems already in place, prove one
+                workflow, then use the pattern for the next.
+              </p>
             </div>
             <span className="tag tag-active">
               <span className="status-dot live" />

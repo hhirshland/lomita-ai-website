@@ -20,26 +20,6 @@ export default function Footer() {
           </span>
         </div>
 
-        {/* Nav */}
-        <nav className="flex gap-6">
-          {[
-            { label: "Services", href: "/#services" },
-            { label: "How It Works", href: "/#process" },
-            { label: "Work", href: "/#work" },
-            { label: "About", href: "/#about" },
-            { label: "Products", href: "/products" },
-            { label: "Contact", href: "/#contact" },
-          ].map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-[13px] text-muted transition-colors duration-150 hover:text-foreground"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
         {/* Copyright */}
         <p className="font-mono text-[11px] text-muted-light">
           &copy; {new Date().getFullYear()} Hyperactive Studio
