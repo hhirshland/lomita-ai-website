@@ -22,9 +22,9 @@ export default function Hero() {
             transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-foreground"
           >
-            AI transformation
+            AI deployment
             <br />
-            <span className="hand-note">for your firm</span>
+            <span className="hand-note">for your investment firm</span>
           </motion.h1>
 
           {/* Subhead */}
