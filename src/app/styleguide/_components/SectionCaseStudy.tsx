@@ -8,15 +8,36 @@ type Props = {
 export default function SectionCaseStudy({ direction }: Props) {
   const { key } = direction;
   const isAtelier = key === "atelier";
-  const isCurrent = key === "current";
   const casePlate = isAtelier ? direction.plates?.[2] : undefined;
+  const bodyFont = direction.bodyIsSerif
+    ? "var(--sg-serif)"
+    : "var(--sg-sans)";
+
+  const sectionTitle =
+    key === "salon"
+      ? "From the Files"
+      : key === "atelier"
+      ? "Confluence · A Working Valley"
+      : key === "endowment"
+      ? "From the Records"
+      : key === "meridian"
+      ? "Field Brief · 014"
+      : key === "studio"
+      ? "Recent work"
+      : "Recent work";
 
   return (
     <section
       style={{
         padding: "64px 24px",
         borderTop: "1px solid var(--sg-rule)",
-        background: key === "salon" ? "var(--sg-paper-alt)" : "transparent",
+        background:
+          key === "salon" ||
+          key === "endowment" ||
+          key === "meridian" ||
+          key === "studio"
+            ? "var(--sg-paper-alt)"
+            : "transparent",
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -26,11 +47,7 @@ export default function SectionCaseStudy({ direction }: Props) {
             className="sg-h2"
             style={{ marginTop: 8, fontSize: "clamp(1.75rem, 3vw, 2.25rem)" }}
           >
-            {key === "salon"
-              ? "From the Files"
-              : key === "atelier"
-              ? "Confluence · A Working Valley"
-              : "Recent work"}
+            {sectionTitle}
           </h2>
         </header>
 
@@ -64,10 +81,12 @@ export default function SectionCaseStudy({ direction }: Props) {
             </h3>
 
             <p
-              className={isAtelier ? "sg-dropcap" : ""}
+              className={
+                isAtelier || key === "endowment" ? "sg-dropcap" : ""
+              }
               style={{
                 marginTop: 24,
-                fontFamily: isCurrent ? "var(--sg-sans)" : "var(--sg-serif)",
+                fontFamily: bodyFont,
                 fontSize: 16,
                 lineHeight: 1.75,
                 color: "var(--sg-ink-soft)",
@@ -84,7 +103,7 @@ export default function SectionCaseStudy({ direction }: Props) {
             <p
               style={{
                 marginTop: 16,
-                fontFamily: isCurrent ? "var(--sg-sans)" : "var(--sg-serif)",
+                fontFamily: bodyFont,
                 fontSize: 16,
                 lineHeight: 1.75,
                 color: "var(--sg-ink-soft)",
@@ -122,7 +141,7 @@ export default function SectionCaseStudy({ direction }: Props) {
               <p
                 style={{
                   fontFamily: "var(--sg-serif)",
-                  fontStyle: isCurrent ? "normal" : "italic",
+                  fontStyle: direction.bodyIsSerif ? "italic" : "normal",
                   fontSize: "1.15rem",
                   lineHeight: 1.45,
                   color: "var(--sg-ink)",

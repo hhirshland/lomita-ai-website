@@ -80,10 +80,9 @@ export default function ComponentSamples({ direction }: Props) {
               </div>
               <div
                 style={{
-                  fontFamily:
-                    direction.key === "current"
-                      ? "var(--sg-sans)"
-                      : "var(--sg-serif)",
+                  fontFamily: direction.bodyIsSerif
+                    ? "var(--sg-serif)"
+                    : "var(--sg-sans)",
                   fontSize: 14,
                   lineHeight: 1.55,
                   color: "var(--sg-ink)",
@@ -184,10 +183,9 @@ export default function ComponentSamples({ direction }: Props) {
                 style={{
                   width: 56,
                   height: 56,
-                  borderRadius:
-                    direction.key === "salon" || direction.key === "atelier"
-                      ? "50%"
-                      : "var(--sg-radius)",
+                  borderRadius: direction.monogramCircular
+                    ? "50%"
+                    : "var(--sg-radius)",
                   background: "var(--sg-ink)",
                   color: "var(--sg-paper)",
                   display: "flex",
@@ -196,10 +194,7 @@ export default function ComponentSamples({ direction }: Props) {
                   fontFamily: "var(--sg-display)",
                   fontWeight: 700,
                   fontSize: 22,
-                  fontStyle:
-                    direction.key === "salon" || direction.key === "atelier"
-                      ? "italic"
-                      : "normal",
+                  fontStyle: direction.monogramCircular ? "italic" : "normal",
                   letterSpacing: "-0.02em",
                   border:
                     direction.key === "atelier"

@@ -113,6 +113,31 @@ export default function Masthead({ direction }: Props) {
               </span>
             </div>
           )}
+
+          {key === "meridian" && (
+            <div style={{ marginTop: 32 }}>
+              <span className="sg-ticker">
+                Boutique · Allocator-grade · 2026
+              </span>
+            </div>
+          )}
+
+          {key === "endowment" && (
+            <div style={{ marginTop: 32 }}>
+              <span className="sg-classification">
+                Endowment Series · 2026
+              </span>
+            </div>
+          )}
+
+          {key === "studio" && (
+            <div style={{ marginTop: 32 }}>
+              <span className="sg-tag sg-tag-accent">
+                <span className="sg-dot" />
+                Now booking · 2026
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Atelier: featured painted landscape */}
