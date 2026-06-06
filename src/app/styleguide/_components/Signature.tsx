@@ -6,6 +6,22 @@ type Props = {
 
 export default function Signature({ direction }: Props) {
   const { key } = direction;
+  const bodyFont = direction.bodyIsSerif
+    ? "var(--sg-serif)"
+    : "var(--sg-sans)";
+
+  const blurb =
+    key === "salon"
+      ? "Counsel to capital, calibrated for the AI era. Engagements taken by introduction."
+      : key === "atelier"
+      ? "We belong in the lineage of revolutions that built the modern economy. The fourth is in progress. We're at the press."
+      : key === "meridian"
+      ? "A boutique advisor for institutional capital, calibrated for the AI era. Engagements taken by introduction."
+      : key === "endowment"
+      ? "Counsel to long-tenured capital. We work with endowments, family offices, and PE firms one engagement at a time."
+      : key === "studio"
+      ? "An AI studio for the founders rebuilding investing from scratch — and the funds backing them."
+      : "An AI agency for fund-of-funds, private equity, and family-office allocators.";
 
   return (
     <footer
@@ -13,7 +29,10 @@ export default function Signature({ direction }: Props) {
         padding: "64px 24px 80px",
         borderTop: "1px solid var(--sg-rule)",
         background:
-          key === "salon" || key === "atelier"
+          key === "salon" ||
+          key === "atelier" ||
+          key === "endowment" ||
+          key === "meridian"
             ? "var(--sg-paper-alt)"
             : "transparent",
       }}
@@ -34,10 +53,9 @@ export default function Signature({ direction }: Props) {
                 style={{
                   width: 64,
                   height: 64,
-                  borderRadius:
-                    key === "salon" || key === "atelier"
-                      ? "50%"
-                      : "var(--sg-radius)",
+                  borderRadius: direction.monogramCircular
+                    ? "50%"
+                    : "var(--sg-radius)",
                   background: "var(--sg-ink)",
                   color: "var(--sg-paper)",
                   display: "flex",
@@ -46,10 +64,7 @@ export default function Signature({ direction }: Props) {
                   fontFamily: "var(--sg-display)",
                   fontWeight: 700,
                   fontSize: 26,
-                  fontStyle:
-                    key === "salon" || key === "atelier"
-                      ? "italic"
-                      : "normal",
+                  fontStyle: direction.monogramCircular ? "italic" : "normal",
                   letterSpacing: "-0.02em",
                   border:
                     key === "atelier"
@@ -85,18 +100,13 @@ export default function Signature({ direction }: Props) {
               style={{
                 marginTop: 28,
                 maxWidth: 460,
-                fontFamily:
-                  key === "current" ? "var(--sg-sans)" : "var(--sg-serif)",
+                fontFamily: bodyFont,
                 fontSize: 16,
                 lineHeight: 1.65,
                 color: "var(--sg-muted)",
               }}
             >
-              {key === "salon"
-                ? "Counsel to capital, calibrated for the AI era. Engagements taken by introduction."
-                : key === "atelier"
-                ? "We belong in the lineage of revolutions that built the modern economy. The fourth is in progress. We're at the press."
-                : "An AI agency for fund-of-funds, private equity, and family-office allocators."}
+              {blurb}
             </p>
           </div>
 
@@ -126,8 +136,7 @@ export default function Signature({ direction }: Props) {
               <a
                 href="mailto:partners@hyperactive.studio"
                 style={{
-                  fontFamily:
-                    key === "current" ? "var(--sg-sans)" : "var(--sg-serif)",
+                  fontFamily: bodyFont,
                   fontSize: 14,
                   color: "var(--sg-ink)",
                   borderBottom: "1px solid var(--sg-accent)",
@@ -154,8 +163,7 @@ export default function Signature({ direction }: Props) {
               <a
                 href="#"
                 style={{
-                  fontFamily:
-                    key === "current" ? "var(--sg-sans)" : "var(--sg-serif)",
+                  fontFamily: bodyFont,
                   fontSize: 14,
                   color: "var(--sg-ink)",
                   borderBottom: "1px solid var(--sg-accent)",
@@ -181,8 +189,7 @@ export default function Signature({ direction }: Props) {
               </div>
               <div
                 style={{
-                  fontFamily:
-                    key === "current" ? "var(--sg-sans)" : "var(--sg-serif)",
+                  fontFamily: bodyFont,
                   fontSize: 14,
                   color: "var(--sg-ink)",
                   lineHeight: 1.5,

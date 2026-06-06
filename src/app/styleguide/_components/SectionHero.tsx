@@ -10,6 +10,9 @@ export default function SectionHero({ direction }: Props) {
   const isAtelier = key === "atelier";
   const isCurrent = key === "current";
   const heroPlate = isAtelier ? direction.plates?.[1] : undefined;
+  const bodyFont = direction.bodyIsSerif
+    ? "var(--sg-serif)"
+    : "var(--sg-sans)";
 
   return (
     <section
@@ -121,7 +124,7 @@ export default function SectionHero({ direction }: Props) {
                 className="sg-dropcap"
                 style={{
                   marginTop: 24,
-                  fontFamily: "var(--sg-serif)",
+                  fontFamily: bodyFont,
                   fontSize: "1.05rem",
                   lineHeight: 1.7,
                   color: "var(--sg-ink-soft)",
@@ -199,6 +202,19 @@ export default function SectionHero({ direction }: Props) {
               <span className="sg-classification">
                 Private Memo · Bureau Series
               </span>
+            ) : key === "meridian" ? (
+              <span className="sg-ticker">
+                Allocator brief · 2026
+              </span>
+            ) : key === "endowment" ? (
+              <span className="sg-classification">
+                Memorandum · Endowment Series
+              </span>
+            ) : key === "studio" ? (
+              <span className="sg-tag sg-tag-accent">
+                <span className="sg-dot" />
+                Now booking
+              </span>
             ) : (
               <span className="sg-tag sg-tag-accent">
                 <span className="sg-dot" />
@@ -221,6 +237,46 @@ export default function SectionHero({ direction }: Props) {
                   for the{" "}
                   <span className="sg-handnote">AI Era</span>
                 </>
+              ) : key === "salon" ? (
+                <>
+                  Counsel to capital,
+                  <br />
+                  <em style={{ color: "var(--sg-accent)" }}>
+                    calibrated for the AI era.
+                  </em>
+                </>
+              ) : key === "meridian" ? (
+                <>
+                  Boutique counsel
+                  <br />
+                  for the firms{" "}
+                  <span style={{ color: "var(--sg-accent)" }}>
+                    allocating
+                  </span>
+                  <br />
+                  to the AI era.
+                </>
+              ) : key === "endowment" ? (
+                <>
+                  An advisor to
+                  <br />
+                  <em style={{ color: "var(--sg-accent)" }}>
+                    long-tenured capital,
+                  </em>
+                  <br />
+                  in the year capital changed.
+                </>
+              ) : key === "studio" ? (
+                <>
+                  An AI studio for
+                  <br />
+                  the founders{" "}
+                  <span style={{ color: "var(--sg-accent)" }}>
+                    rebuilding
+                  </span>
+                  <br />
+                  investing from scratch.
+                </>
               ) : (
                 <>
                   Counsel to capital,
@@ -235,7 +291,7 @@ export default function SectionHero({ direction }: Props) {
             <p
               style={{
                 marginTop: 24,
-                fontFamily: isCurrent ? "var(--sg-sans)" : "var(--sg-serif)",
+                fontFamily: bodyFont,
                 fontSize: "1.05rem",
                 lineHeight: 1.65,
                 maxWidth: 620,

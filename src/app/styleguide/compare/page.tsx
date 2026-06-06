@@ -6,10 +6,17 @@ import { directions, type DirectionKey } from "../_components/directions";
 export const metadata: Metadata = {
   title: "Compare — Hyperactive Styleguide",
   description:
-    "Three-column side-by-side of Current, Bureau · Salon, Bureau · Atelier. Same vocabulary, three voices.",
+    "Side-by-side: today's live design (Current) against three new brand directions — Meridian, Endowment, Studio. Same vocabulary, four voices.",
 };
 
-const order: DirectionKey[] = ["current", "salon", "atelier"];
+const primaryOrder: DirectionKey[] = [
+  "current",
+  "meridian",
+  "endowment",
+  "studio",
+];
+
+const previousOrder: DirectionKey[] = ["salon", "atelier"];
 
 export default function ComparePage() {
   return (
@@ -34,7 +41,7 @@ export default function ComparePage() {
       >
         <div
           style={{
-            maxWidth: "1600px",
+            maxWidth: "1800px",
             margin: "0 auto",
             padding: "12px 24px",
             display: "flex",
@@ -69,7 +76,7 @@ export default function ComparePage() {
               fontWeight: 600,
             }}
           >
-            Compare · Current vs Bureau Salon vs Bureau Atelier
+            Compare · Current vs three new directions
           </span>
           <span
             style={{
@@ -86,60 +93,73 @@ export default function ComparePage() {
       {/* Intro */}
       <section
         style={{
-          maxWidth: "1600px",
+          maxWidth: "1800px",
           margin: "0 auto",
           padding: "48px 24px 32px",
         }}
       >
+        <span
+          style={{
+            fontFamily:
+              "var(--font-jetbrains-mono), ui-monospace, monospace",
+            fontSize: 11,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#71717A",
+          }}
+        >
+          Round III · Three new directions
+        </span>
         <h1
           style={{
-            fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+            marginTop: 12,
+            fontSize: "clamp(1.85rem, 3.5vw, 2.6rem)",
             fontWeight: 600,
             letterSpacing: "-0.02em",
             lineHeight: 1.1,
-            maxWidth: 760,
+            maxWidth: 880,
           }}
         >
-          Three brand directions, side by side.
+          Today, alongside three new brand directions.
         </h1>
         <p
           style={{
             marginTop: 16,
-            maxWidth: 720,
+            maxWidth: 760,
             fontSize: 15,
             lineHeight: 1.65,
             color: "#52525B",
           }}
         >
-          Bureau in two registers — Salon (pure typography) and Atelier
-          (engraving-led heritage) — measured against today&apos;s live
-          design as the anchor. Click any column header to open its full
-          styleguide page.
+          Current pinned in column one as the anchor. Meridian (boutique
+          McKinsey + Palantir, dark), Endowment (family-office green and
+          gold), and Studio (founder/agency charcoal and peach) follow.
+          Same hero, same case study, same component vocabulary — only the
+          tokens change.
         </p>
       </section>
 
-      {/* 3-column grid */}
+      {/* 4-column primary grid */}
       <section
         style={{
-          maxWidth: "1600px",
+          maxWidth: "1800px",
           margin: "0 auto",
-          padding: "0 12px 80px",
+          padding: "0 12px 56px",
         }}
       >
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, minmax(320px, 1fr))",
+            gridTemplateColumns: `repeat(${primaryOrder.length}, minmax(320px, 1fr))`,
             gap: 16,
             overflowX: "auto",
           }}
         >
-          {order.map((k) => (
+          {primaryOrder.map((k) => (
             <CompareColumn key={k} direction={k} />
           ))}
         </div>
 
-        {/* Mobile note */}
         <p
           style={{
             marginTop: 24,
@@ -150,15 +170,113 @@ export default function ComparePage() {
             letterSpacing: "0.06em",
           }}
         >
-          ↔ Scroll horizontally on smaller screens. For full pages, use the
-          column headers.
+          ↔ Scroll horizontally on smaller screens. Click any column header to
+          open its full styleguide page.
         </p>
+      </section>
+
+      {/* Round II (previous) reference grid */}
+      <section
+        style={{
+          maxWidth: "1800px",
+          margin: "0 auto",
+          padding: "32px 24px 80px",
+          borderTop: "1px solid #E4E4E7",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            gap: 16,
+            flexWrap: "wrap",
+          }}
+        >
+          <div>
+            <span
+              style={{
+                fontFamily:
+                  "var(--font-jetbrains-mono), ui-monospace, monospace",
+                fontSize: 11,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#71717A",
+              }}
+            >
+              Round II · Reference only
+            </span>
+            <h2
+              style={{
+                marginTop: 8,
+                fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+                fontWeight: 600,
+                letterSpacing: "-0.015em",
+                lineHeight: 1.15,
+              }}
+            >
+              Bureau · Salon and Atelier
+            </h2>
+            <p
+              style={{
+                marginTop: 8,
+                maxWidth: 640,
+                fontSize: 14,
+                lineHeight: 1.6,
+                color: "#52525B",
+              }}
+            >
+              The previous exploration, kept here as visual context. Salon
+              leans on pure typography; Atelier brings painted heritage.
+            </p>
+          </div>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {previousOrder.map((k) => (
+              <Link
+                key={k}
+                href={`/styleguide/${k}`}
+                style={{
+                  padding: "8px 14px",
+                  background: "transparent",
+                  color: "#141414",
+                  fontSize: 13,
+                  fontWeight: 500,
+                  borderRadius: 6,
+                  textDecoration: "none",
+                  border: "1px solid #D4D4D8",
+                  fontFamily: "var(--font-inter), system-ui, sans-serif",
+                }}
+              >
+                Open {directions[k].shortName} →
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div
+          style={{
+            marginTop: 32,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
+            gap: 16,
+          }}
+        >
+          {previousOrder.map((k) => (
+            <CompareColumn key={k} direction={k} compact />
+          ))}
+        </div>
       </section>
     </div>
   );
 }
 
-function CompareColumn({ direction }: { direction: DirectionKey }) {
+function CompareColumn({
+  direction,
+  compact = false,
+}: {
+  direction: DirectionKey;
+  compact?: boolean;
+}) {
   const data = directions[direction];
   const isCurrent = direction === "current";
   const isAtelier = direction === "atelier";
@@ -201,11 +319,7 @@ function CompareColumn({ direction }: { direction: DirectionKey }) {
               color: "var(--sg-accent)",
             }}
           >
-            {isCurrent
-              ? "Baseline"
-              : direction === "salon"
-              ? "Variant A · Typographic"
-              : "Variant B · Painted"}
+            {data.era}
           </div>
           <div
             className="sg-display"
@@ -254,18 +368,6 @@ function CompareColumn({ direction }: { direction: DirectionKey }) {
 
       {/* Masthead — voice + era */}
       <section style={{ padding: "20px" }}>
-        <div
-          className="sg-mono"
-          style={{
-            fontSize: 10,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "var(--sg-muted)",
-            marginBottom: 12,
-          }}
-        >
-          {data.era}
-        </div>
         <h2
           className="sg-display"
           style={{
@@ -273,7 +375,19 @@ function CompareColumn({ direction }: { direction: DirectionKey }) {
             lineHeight: 1.05,
           }}
         >
-          The AI Revolution
+          {direction === "current"
+            ? "AI Era"
+            : direction === "salon"
+            ? "Counsel · 2026"
+            : direction === "atelier"
+            ? "The fourth revolution"
+            : direction === "meridian"
+            ? "Allocator's brief"
+            : direction === "endowment"
+            ? "For long capital"
+            : direction === "studio"
+            ? "An AI studio"
+            : "AI Era"}
         </h2>
         <blockquote
           style={{
@@ -281,7 +395,7 @@ function CompareColumn({ direction }: { direction: DirectionKey }) {
             paddingLeft: 12,
             borderLeft: "2px solid var(--sg-accent)",
             fontFamily: "var(--sg-serif)",
-            fontStyle: isCurrent ? "normal" : "italic",
+            fontStyle: data.bodyIsSerif ? "italic" : "normal",
             fontSize: "0.95rem",
             lineHeight: 1.4,
             color: "var(--sg-ink-soft)",
@@ -314,7 +428,9 @@ function CompareColumn({ direction }: { direction: DirectionKey }) {
         <p
           style={{
             marginTop: 10,
-            fontFamily: isCurrent ? "var(--sg-sans)" : "var(--sg-serif)",
+            fontFamily: data.bodyIsSerif
+              ? "var(--sg-serif)"
+              : "var(--sg-sans)",
             fontSize: 14,
             lineHeight: 1.6,
             color: "var(--sg-ink-soft)",
@@ -332,7 +448,7 @@ function CompareColumn({ direction }: { direction: DirectionKey }) {
             letterSpacing: "0.04em",
           }}
         >
-          {data.type.display.name} · {data.type.mono.name}
+          {data.type.display.name} · {data.type.body.name} · {data.type.mono.name}
         </div>
       </section>
 
@@ -383,133 +499,176 @@ function CompareColumn({ direction }: { direction: DirectionKey }) {
         </div>
       </section>
 
-      {/* Hero snippet */}
-      <section
-        style={{
-          padding: "20px",
-          borderTop: "1px solid var(--sg-rule)",
-          flexGrow: 1,
-        }}
-      >
-        <SectionLabel>§ Hero</SectionLabel>
-        <div
+      {/* Hero snippet — skipped in compact reference variants */}
+      {!compact && (
+        <section
           style={{
-            marginTop: 14,
-            padding: 16,
-            background: "var(--sg-surface)",
-            border: "1px solid var(--sg-rule)",
-            borderRadius: "var(--sg-radius)",
+            padding: "20px",
+            borderTop: "1px solid var(--sg-rule)",
+            flexGrow: 1,
           }}
         >
-          {direction === "salon" ? (
-            <div className="sg-classification" style={{ fontSize: 9 }}>
-              IC Pre-read
-            </div>
-          ) : isAtelier ? (
-            <div className="sg-classification" style={{ fontSize: 9 }}>
-              Plate II · Long View
-            </div>
-          ) : (
-            <span className="sg-tag sg-tag-accent" style={{ fontSize: 9 }}>
-              <span className="sg-dot" />
-              accepting clients
-            </span>
-          )}
-
-          <h3
-            className="sg-display"
-            style={{
-              marginTop: 14,
-              fontSize: "1.7rem",
-              lineHeight: 1.05,
-            }}
-          >
-            {isCurrent ? (
-              "Transform your enterprise for the AI Era"
-            ) : direction === "salon" ? (
-              <>
-                Counsel to capital,
-                <br />
-                <em style={{ color: "var(--sg-accent)" }}>
-                  calibrated for the AI era.
-                </em>
-              </>
-            ) : (
-              <>
-                The fourth revolution
-                <br />
-                <em style={{ color: "var(--sg-accent)" }}>
-                  rewires the same capital
-                </em>
-                {" "}the first three did.
-              </>
-            )}
-          </h3>
-
-          <p
-            style={{
-              marginTop: 14,
-              fontFamily: isCurrent ? "var(--sg-sans)" : "var(--sg-serif)",
-              fontSize: 12,
-              lineHeight: 1.6,
-              color: "var(--sg-muted)",
-            }}
-          >
-            For fund-of-funds, private equity, and family-office allocators.
-          </p>
-
+          <SectionLabel>§ Hero</SectionLabel>
           <div
             style={{
-              marginTop: 16,
+              marginTop: 14,
+              padding: 16,
+              background: "var(--sg-surface)",
+              border: "1px solid var(--sg-rule)",
+              borderRadius: "var(--sg-radius)",
+            }}
+          >
+            <HeroEyebrow direction={direction} />
+
+            <h3
+              className="sg-display"
+              style={{
+                marginTop: 14,
+                fontSize: "1.55rem",
+                lineHeight: 1.05,
+              }}
+            >
+              <HeroHeadline direction={direction} />
+            </h3>
+
+            <p
+              style={{
+                marginTop: 14,
+                fontFamily: data.bodyIsSerif
+                  ? "var(--sg-serif)"
+                  : "var(--sg-sans)",
+                fontSize: 12,
+                lineHeight: 1.6,
+                color: "var(--sg-muted)",
+              }}
+            >
+              For fund-of-funds, private equity, and family-office allocators.
+            </p>
+
+            <div
+              style={{
+                marginTop: 16,
+                display: "flex",
+                gap: 6,
+                flexWrap: "wrap",
+              }}
+            >
+              <button
+                className="sg-btn sg-btn-primary"
+                style={{ fontSize: 11, padding: "8px 12px" }}
+              >
+                Schedule
+              </button>
+              <button
+                className="sg-btn sg-btn-secondary"
+                style={{ fontSize: 11, padding: "8px 12px" }}
+              >
+                Pre-read
+              </button>
+            </div>
+
+            <div
+              style={{
+                marginTop: 20,
+                paddingTop: 12,
+                borderTop: "1px solid var(--sg-rule)",
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: 10,
+              }}
+            >
+              {[
+                { f: "$1.2B", l: "AUM" },
+                { f: "14d", l: "to ship" },
+                { f: "0", l: "decks" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <div
+                    className="sg-stat-figure"
+                    style={{ fontSize: "1.15rem" }}
+                  >
+                    {s.f}
+                  </div>
+                  <div className="sg-stat-label" style={{ fontSize: 9 }}>
+                    {s.l}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Components row — buttons + tag, so the buyer can compare CTAs at a glance */}
+      {!compact && (
+        <section
+          style={{
+            padding: "20px",
+            borderTop: "1px solid var(--sg-rule)",
+          }}
+        >
+          <SectionLabel>§ Components</SectionLabel>
+          <div
+            style={{
+              marginTop: 12,
               display: "flex",
-              gap: 6,
-              flexWrap: "wrap",
+              flexDirection: "column",
+              gap: 10,
+              alignItems: "flex-start",
             }}
           >
             <button
               className="sg-btn sg-btn-primary"
-              style={{ fontSize: 11, padding: "8px 12px" }}
+              style={{ fontSize: 12, padding: "8px 14px" }}
             >
-              Schedule
+              Schedule a working session
+              <span aria-hidden>→</span>
             </button>
             <button
               className="sg-btn sg-btn-secondary"
-              style={{ fontSize: 11, padding: "8px 12px" }}
+              style={{ fontSize: 12, padding: "8px 14px" }}
             >
-              Pre-read
+              Download pre-read
             </button>
-          </div>
-
-          <div
-            style={{
-              marginTop: 20,
-              paddingTop: 12,
-              borderTop: "1px solid var(--sg-rule)",
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 10,
-            }}
-          >
-            {[
-              { f: "$1.2B", l: "AUM" },
-              { f: "14d", l: "to ship" },
-              { f: "0", l: "decks" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div
-                  className="sg-stat-figure"
-                  style={{ fontSize: "1.2rem" }}
-                >
-                  {s.f}
-                </div>
-                <div className="sg-stat-label" style={{ fontSize: 9 }}>
-                  {s.l}
-                </div>
+            <span
+              className="sg-tag sg-tag-accent"
+              style={{ fontSize: 10 }}
+            >
+              <span className="sg-dot" />
+              Engagement live
+            </span>
+            <div
+              className="sg-callout"
+              style={{ width: "100%", padding: "12px 14px" }}
+            >
+              <div
+                className="sg-mono"
+                style={{
+                  fontSize: 9,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "var(--sg-accent)",
+                  marginBottom: 4,
+                }}
+              >
+                Working note
               </div>
-            ))}
+              <div
+                style={{
+                  fontFamily: data.bodyIsSerif
+                    ? "var(--sg-serif)"
+                    : "var(--sg-sans)",
+                  fontSize: 12,
+                  lineHeight: 1.5,
+                  color: "var(--sg-ink)",
+                }}
+              >
+                You don&apos;t get a deck. You get the system, shipped.
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Footer */}
       <div
@@ -537,11 +696,119 @@ function CompareColumn({ direction }: { direction: DirectionKey }) {
             paddingBottom: 1,
           }}
         >
-          Full page →
+          {isCurrent ? "Live page →" : "Full page →"}
         </Link>
       </div>
     </div>
   );
+}
+
+function HeroEyebrow({ direction }: { direction: DirectionKey }) {
+  switch (direction) {
+    case "salon":
+      return (
+        <div className="sg-classification" style={{ fontSize: 9 }}>
+          IC Pre-read
+        </div>
+      );
+    case "atelier":
+      return (
+        <div className="sg-classification" style={{ fontSize: 9 }}>
+          Plate II · Long View
+        </div>
+      );
+    case "endowment":
+      return (
+        <div className="sg-classification" style={{ fontSize: 9 }}>
+          Memorandum
+        </div>
+      );
+    case "meridian":
+      return (
+        <span className="sg-ticker" style={{ fontSize: 9 }}>
+          Allocator brief · 2026
+        </span>
+      );
+    case "studio":
+      return (
+        <span className="sg-tag sg-tag-accent" style={{ fontSize: 9 }}>
+          <span className="sg-dot" />
+          Now booking
+        </span>
+      );
+    case "current":
+    default:
+      return (
+        <span className="sg-tag sg-tag-accent" style={{ fontSize: 9 }}>
+          <span className="sg-dot" />
+          Accepting clients
+        </span>
+      );
+  }
+}
+
+function HeroHeadline({ direction }: { direction: DirectionKey }) {
+  switch (direction) {
+    case "current":
+      return <>Transform your enterprise for the AI Era</>;
+    case "salon":
+      return (
+        <>
+          Counsel to capital,
+          <br />
+          <em style={{ color: "var(--sg-accent)" }}>
+            calibrated for the AI era.
+          </em>
+        </>
+      );
+    case "atelier":
+      return (
+        <>
+          The fourth revolution
+          <br />
+          <em style={{ color: "var(--sg-accent)" }}>
+            rewires the same capital
+          </em>
+          {" "}the first three did.
+        </>
+      );
+    case "meridian":
+      return (
+        <>
+          Boutique counsel
+          <br />
+          for the firms{" "}
+          <span style={{ color: "var(--sg-accent)" }}>allocating</span>
+          <br />
+          to the AI era.
+        </>
+      );
+    case "endowment":
+      return (
+        <>
+          An advisor to
+          <br />
+          <em style={{ color: "var(--sg-accent)" }}>
+            long-tenured capital,
+          </em>
+          <br />
+          in the year capital changed.
+        </>
+      );
+    case "studio":
+      return (
+        <>
+          An AI studio for
+          <br />
+          founders{" "}
+          <span style={{ color: "var(--sg-accent)" }}>rebuilding</span>
+          <br />
+          investing from scratch.
+        </>
+      );
+    default:
+      return null;
+  }
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {

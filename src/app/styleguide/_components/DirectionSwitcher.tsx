@@ -1,10 +1,20 @@
 import Link from "next/link";
 import type { DirectionKey } from "./directions";
 
-const directions: { key: DirectionKey; label: string; tag: string }[] = [
-  { key: "current", label: "Current", tag: "Product Lab" },
-  { key: "salon", label: "Bureau · Salon", tag: "Typographic" },
-  { key: "atelier", label: "Bureau · Atelier", tag: "Engraved" },
+type SwitcherEntry = {
+  key: DirectionKey;
+  label: string;
+  tag: string;
+  group: "baseline" | "round-iii" | "round-ii";
+};
+
+const entries: SwitcherEntry[] = [
+  { key: "current", label: "Current", tag: "Product Lab", group: "baseline" },
+  { key: "meridian", label: "Meridian", tag: "Navy + Peach", group: "round-iii" },
+  { key: "endowment", label: "Endowment", tag: "Forest + Gold", group: "round-iii" },
+  { key: "studio", label: "Studio", tag: "Charcoal + Peach", group: "round-iii" },
+  { key: "salon", label: "Salon", tag: "Round II · A", group: "round-ii" },
+  { key: "atelier", label: "Atelier", tag: "Round II · B", group: "round-ii" },
 ];
 
 type Props = {
@@ -58,7 +68,7 @@ export default function DirectionSwitcher({ active }: Props) {
         />
 
         <nav style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
-          {directions.map((d) => {
+          {entries.map((d) => {
             const isActive = d.key === active;
             return (
               <Link
@@ -113,7 +123,7 @@ export default function DirectionSwitcher({ active }: Props) {
             paddingBottom: "2px",
           }}
         >
-          Compare all three →
+          Compare side-by-side →
         </Link>
       </div>
     </div>

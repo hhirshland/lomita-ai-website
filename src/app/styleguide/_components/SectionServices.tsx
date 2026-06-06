@@ -27,6 +27,29 @@ const services = [
 
 export default function SectionServices({ direction }: Props) {
   const { key } = direction;
+  const bodyFont = direction.bodyIsSerif
+    ? "var(--sg-serif)"
+    : "var(--sg-sans)";
+
+  const sectionTitle =
+    key === "salon"
+      ? "Practice Areas"
+      : key === "atelier"
+      ? "Plates · Lines of Practice"
+      : key === "meridian"
+      ? "Practice Areas"
+      : key === "endowment"
+      ? "Lines of Practice"
+      : key === "studio"
+      ? "What we do"
+      : "What we do";
+
+  const idLabel = (id: string) => {
+    if (key === "atelier") return `Fig. ${id}`;
+    if (key === "endowment") return `§ ${id}`;
+    if (key === "meridian") return `// ${id}`;
+    return id;
+  };
 
   return (
     <section
@@ -51,11 +74,7 @@ export default function SectionServices({ direction }: Props) {
               className="sg-h2"
               style={{ marginTop: 8, fontSize: "clamp(1.75rem, 3vw, 2.25rem)" }}
             >
-              {key === "salon"
-                ? "Practice Areas"
-                : key === "atelier"
-                ? "Plates · Lines of Practice"
-                : "What we do"}
+              {sectionTitle}
             </h2>
           </div>
           <span className="sg-tag sg-tag-accent">
@@ -93,7 +112,7 @@ export default function SectionServices({ direction }: Props) {
                   fontWeight: 600,
                 }}
               >
-                {key === "atelier" ? `Fig. ${s.id}` : s.id}
+                {idLabel(s.id)}
               </div>
               <div
                 style={{
@@ -114,8 +133,7 @@ export default function SectionServices({ direction }: Props) {
                 </h3>
                 <p
                   style={{
-                    fontFamily:
-                      key === "current" ? "var(--sg-sans)" : "var(--sg-serif)",
+                    fontFamily: bodyFont,
                     fontSize: 15,
                     lineHeight: 1.6,
                     color: "var(--sg-muted)",

@@ -6,7 +6,7 @@ type Props = {
 
 export default function TypeSpecimen({ direction }: Props) {
   const { type } = direction;
-  const isSerif = direction.key !== "current";
+  const isSerif = direction.bodyIsSerif;
 
   return (
     <section
@@ -40,7 +40,7 @@ export default function TypeSpecimen({ direction }: Props) {
               color: "var(--sg-muted)",
             }}
           >
-            Same copy across all four directions
+            Same copy across every direction
           </span>
         </header>
 
