@@ -398,7 +398,7 @@ const ENGAGEMENTS = [
     label: "À la carte",
     title: "Pick a workflow.",
     body: "Choose one or more agents from the catalog. We map the workflow, build the harness, and deploy in your environment.",
-    meta: "6–8 weeks · Fixed scope",
+    meta: "~8 weeks · Fixed scope",
   },
   {
     label: "Embedded",
