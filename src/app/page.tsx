@@ -322,13 +322,13 @@ function Workflows() {
             <span className="font-mono-label">Agentic Workflows</span>
           </span>
           <h2 className="sec-head mt-5">
-            A workflow for every high-effort, low-judgement task on the desk.
+            Put your firm&apos;s most tedious workflows on autopilot.
           </h2>
           <p className="lead mt-5 max-w-[640px]">
-            You shouldn&apos;t be paying investment analysts over $200k a year to parse
-            data rooms, copy-paste cells, and format charts. We deploy agents that
-            take over those steps so your team can diligence more opportunities,
-            deeper.
+            You shouldn&apos;t be paying investment analysts $200k+ a year to
+            parse data rooms, copy-paste cells, and format charts. We deploy
+            agents to offload these tasks so your team can focus on higher
+            leverage work.
           </p>
         </div>
 
