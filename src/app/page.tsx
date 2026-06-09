@@ -732,12 +732,11 @@ function CTA() {
               <span className="font-mono-label">Get started</span>
             </span>
             <h2 className="sec-head mt-5">
-              Deploy a similar agent for your fund.
+              Deploy your first agent for your fund.
             </h2>
             <p className="lead mt-6">
-              Tell us about the workflow eating your team&apos;s time. We&apos;ll
-              map it and show you what production-grade looks like — in a single
-              working session.
+              Tell us about the workflows eating your team&apos;s time. We&apos;ll
+              map out a plan for launching a production-grade agent.
             </p>
           </div>
 
