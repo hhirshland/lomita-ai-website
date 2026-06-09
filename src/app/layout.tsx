@@ -1,50 +1,47 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Hyperactive Studio | AI Workflows for Investment Firms",
+  title: "Lomita AI — AI Agents for your investment firm",
   description:
-    "Hyperactive helps private equity, venture capital, and fund-of-funds teams turn AI experiments into production workflows that save time and improve decision-making.",
-  keywords: [
-    "AI workflows for private equity",
-    "AI workflows for venture capital",
-    "AI for fund of funds",
-    "investment operations AI",
-    "agentic workflows for funds",
-    "investment memo automation",
-    "portfolio news tracking",
-    "fund diligence AI",
-  ],
+    "We build and deploy production-grade AI agents that create value for investment firms. Get in touch to learn how your firm can be leveraging AI today.",
   openGraph: {
-    title: "Hyperactive Studio | AI Workflows for Investment Firms",
+    title: "Lomita AI — AI Agents for your investment firm",
     description:
-      "We help investment firms redesign high-friction workflows around firm context, AI execution, and human review.",
+      "Production-grade AI agents that create operating leverage for investment firms.",
     type: "website",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className={`${interTight.variable} ${jetbrainsMono.variable} ${sourceSerif.variable} antialiased`}
       >
         {children}
       </body>

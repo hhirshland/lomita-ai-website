@@ -1,227 +1,278 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────────────────────────────────
+   Lomita AI · Design System (Meridian, canonical dark navy)
+   Consolidated from the Lomita AI Design System bundle:
+   tokens (colors, typography, spacing, elevation) + the .lui-* components
+   used on this page.
+   ────────────────────────────────────────────────────────────────────────── */
+
 :root {
-  /* Structured Experimentation — Product Lab Palette */
-  --background: #FAFAFA;
-  --foreground: #141414;
-  --primary: #141414;
-  --primary-light: #2A2A2A;
+  /* ── Palette: Navy ────────────────────────────────────────────────── */
+  --navy-900: #0b1120;
+  --navy-800: #0f172a;
+  --navy-700: #1a2438;
+  --navy-600: #1e293b;
+  --navy-500: #334155;
+  --navy-400: #475569;
 
-  /* ── Brand Colors ─────────────────────────────── */
+  /* ── Palette: Ink ─────────────────────────────────────────────────── */
+  --ink-0:   #f8fafc;
+  --ink-100: #cbd5e1;
+  --ink-200: #94a3b8;
+  --ink-300: #64748b;
 
-  /* Teal — confidence, progress, intelligence
-     Use for: CTAs, active states, success indicators, links */
-  --teal: #0D9373;
-  --teal-light: #10B890;
-  --teal-dark: #0A7A5F;
-  --teal-muted: rgba(13, 147, 115, 0.08);
+  /* ── Palette: Peach accent ────────────────────────────────────────── */
+  --peach-300: #f8c088;
+  --peach-400: #f4a261;
+  --peach-500: #e08e4a;
+  --peach-wash: rgba(244, 162, 97, 0.12);
+  --peach-line: rgba(244, 162, 97, 0.28);
 
-  /* Blue — trust, technology, depth
-     Use for: Secondary actions, info states, data visuals, highlights */
-  --blue: #2563EB;
-  --blue-light: #3B82F6;
-  --blue-dark: #1D4ED8;
-  --blue-muted: rgba(37, 99, 235, 0.08);
+  /* ── Semantic surfaces ────────────────────────────────────────────── */
+  --background: var(--navy-800);
+  --surface: var(--navy-700);
+  --surface-alt: var(--navy-600);
+  --surface-well: var(--navy-900);
 
-  /* Orange — energy, speed, warmth
-     Use for: Emphasis, alerts, key moments, playful accents */
-  --orange: #F06D2D;
-  --orange-light: #F5874F;
-  --orange-dark: #D45A1F;
-  --orange-muted: rgba(240, 109, 45, 0.08);
+  /* ── Semantic text ────────────────────────────────────────────────── */
+  --text-strong: var(--ink-0);
+  --text-body: var(--ink-100);
+  --text-muted: var(--ink-200);
+  --text-faint: var(--ink-300);
+  --text-on-accent: var(--navy-800);
 
-  /* ── Legacy aliases (mapped to new palette) ──── */
-  --secondary: var(--teal);
-  --secondary-light: var(--teal-light);
-  --secondary-muted: var(--teal-muted);
-  --accent: var(--orange);
-  --accent-light: var(--orange-light);
-  --accent-muted: var(--orange-muted);
+  /* ── Semantic borders ─────────────────────────────────────────────── */
+  --border: var(--navy-600);
+  --border-strong: var(--navy-500);
 
-  /* Neutrals */
-  --surface: #FFFFFF;
-  --surface-alt: #F3F3F3;
-  --muted: #71717A;
-  --muted-light: #A1A1AA;
-  --border: #E4E4E7;
-  --border-strong: #D4D4D8;
-  --grid-line: rgba(0, 0, 0, 0.04);
+  /* ── Semantic accent ──────────────────────────────────────────────── */
+  --accent: var(--peach-400);
+  --accent-hover: var(--peach-300);
+  --accent-press: var(--peach-500);
+  --accent-wash: var(--peach-wash);
+  --accent-line: var(--peach-line);
+
+  /* ── Grid overlay ─────────────────────────────────────────────────── */
+  --grid-line: rgba(244, 162, 97, 0.05);
+
+  /* ── Type scale ───────────────────────────────────────────────────── */
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 4rem;
+
+  /* ── Weights ──────────────────────────────────────────────────────── */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ── Line heights ─────────────────────────────────────────────────── */
+  --leading-tight: 1.08;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* ── Tracking ─────────────────────────────────────────────────────── */
+  --tracking-display: -0.005em;
+  --tracking-label: 0.08em;
+  --tracking-wide: 0.16em;
+
+  /* ── Spacing ──────────────────────────────────────────────────────── */
+  --container-max: 1200px;
+  --gutter: 2rem;
+  --section-y: 6rem;
+
+  /* ── Radius / elevation / motion ──────────────────────────────────── */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(2, 6, 23, 0.45);
+  --shadow-md: 0 8px 24px rgba(2, 6, 23, 0.5);
+  --inset-hairline: inset 0 1px 0 rgba(248, 250, 252, 0.04);
+  --ring: rgba(244, 162, 97, 0.55);
+  --focus-ring: 0 0 0 3px var(--ring);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+
+  color-scheme: dark;
 }
 
+/* ── Tailwind theme bridge (so utilities pick up tokens) ──────────────────── */
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-light: var(--primary-light);
-  /* Brand colors — Teal */
-  --color-teal: var(--teal);
-  --color-teal-light: var(--teal-light);
-  --color-teal-dark: var(--teal-dark);
-  --color-teal-muted: var(--teal-muted);
-
-  /* Brand colors — Blue */
-  --color-blue: var(--blue);
-  --color-blue-light: var(--blue-light);
-  --color-blue-dark: var(--blue-dark);
-  --color-blue-muted: var(--blue-muted);
-
-  /* Brand colors — Orange */
-  --color-orange: var(--orange);
-  --color-orange-light: var(--orange-light);
-  --color-orange-dark: var(--orange-dark);
-  --color-orange-muted: var(--orange-muted);
-
-  /* Legacy aliases */
-  --color-secondary: var(--teal);
-  --color-secondary-light: var(--teal-light);
-  --color-secondary-muted: var(--teal-muted);
-  --color-accent: var(--orange);
-  --color-accent-light: var(--orange-light);
-  --color-accent-muted: var(--orange-muted);
   --color-surface: var(--surface);
   --color-surface-alt: var(--surface-alt);
-  --color-muted: var(--muted);
-  --color-muted-light: var(--muted-light);
+  --color-text-strong: var(--text-strong);
+  --color-text-body: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
-  --color-grid-line: var(--grid-line);
-  --font-sans: var(--font-inter);
+  --color-accent: var(--accent);
+
+  --font-sans: var(--font-inter-tight);
+  --font-display: var(--font-source-serif);
   --font-mono: var(--font-jetbrains-mono);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  scroll-behavior: smooth;
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-body);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  font-weight: var(--weight-regular);
 }
 
-::selection {
-  background-color: rgba(10, 143, 108, 0.15);
-  color: var(--foreground);
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  color: var(--text-strong);
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-tight);
 }
 
-/* ---- Lab Grid Background ---- */
-.grid-bg {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
 
-.grid-bg-dense {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
+::selection { background: var(--accent-wash); color: var(--text-strong); }
 
-/* ---- Annotation / Handwritten cues ---- */
-.annotation {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: var(--muted-light);
+/* ── Eyebrow / mono labels ───────────────────────────────────────────────── */
+.font-mono-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: var(--weight-medium);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
-.annotation-teal {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: var(--teal);
-}
-
-.annotation-blue {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: var(--blue);
-}
-
-.annotation-orange {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: var(--orange);
-}
-
-/* Legacy alias */
-.annotation-accent {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: var(--orange);
-}
-
-/* ---- Label / Tag style (product-tool feel) ---- */
-.tag {
+.eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--surface);
-  color: var(--muted);
+  gap: 8px;
+  white-space: nowrap;
+  color: var(--accent);
 }
 
-.tag-teal {
-  border-color: var(--teal);
-  color: var(--teal);
-  background: var(--teal-muted);
+.eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
 }
 
-.tag-blue {
-  border-color: var(--blue);
-  color: var(--blue);
-  background: var(--blue-muted);
-}
-
-.tag-orange {
-  border-color: var(--orange);
-  color: var(--orange);
-  background: var(--orange-muted);
-}
-
-/* Legacy aliases */
-.tag-active { border-color: var(--teal); color: var(--teal); background: var(--teal-muted); }
-.tag-warning { border-color: var(--orange); color: var(--orange); background: var(--orange-muted); }
-
-/* ---- Hand-drawn annotation underline ---- */
-.hand-note {
-  position: relative;
-  display: inline;
-}
-.hand-note::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: -4px;
-  right: -4px;
-  height: 35%;
-  background: var(--blue);
-  opacity: 0.13;
-  border-radius: 3px 4px 2px 5px;
-  transform: rotate(-0.7deg) skewX(-2deg);
-}
-
-/* ---- Debug / Status indicator ---- */
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+/* ── Wordmark ────────────────────────────────────────────────────────────── */
+.lui-wordmark {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: var(--weight-semibold);
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--text-strong);
+  white-space: nowrap;
   display: inline-block;
 }
-.status-dot.live { background: var(--secondary); }
-.status-dot.pending { background: var(--accent); }
-.status-dot.idle { background: var(--muted-light); }
+
+.lui-wordmark > sup {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: var(--weight-semibold);
+  font-size: 0.4em;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  vertical-align: super;
+  position: relative;
+  top: -0.12em;
+  margin-left: 0.06em;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.lui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.lui-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+.lui-btn--lg { height: 48px; padding: 0 24px; font-size: var(--text-base); }
+.lui-btn--sm { height: 32px; padding: 0 12px; font-size: var(--text-xs); }
+
+.lui-btn--primary {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border-color: var(--accent);
+}
+
+.lui-btn--primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.lui-btn--primary:active {
+  background: var(--accent-press);
+  border-color: var(--accent-press);
+}
+
+.lui-btn--secondary {
+  background: transparent;
+  color: var(--text-strong);
+  border-color: var(--border-strong);
+}
+
+.lui-btn--secondary:hover {
+  background: var(--surface-alt);
+  border-color: var(--text-faint);
+}
+
+/* ── Graph-paper grid backdrop ───────────────────────────────────────────── */
+.lui-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.lui-grid--fade {
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 20%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 70% at 70% 20%, #000 30%, transparent 75%);
+}
