@@ -146,10 +146,10 @@ function Hero() {
             </h1>
 
             <p className="lead mt-6 max-w-[600px]">
-              We build and deploy production-grade AI agents that create operating
-              leverage for investment firms. Get in touch to learn how your firm
-              can be leveraging AI{" "}
-              <span style={{ color: "var(--text-strong)" }}>today</span>.
+              We build and deploy production-grade AI agents that create
+              operating leverage for investment firms — wired into the tools
+              your team already uses, live in weeks, not quarters. We stay
+              until it works.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
@@ -441,14 +441,77 @@ function Approach() {
           ))}
         </ol>
 
-        <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10">
+        <div className="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
+          <div
+            className="surface-card p-5 sm:p-6"
+            style={{ background: "var(--background)" }}
+          >
+            <span
+              className="font-mono-label"
+              style={{ color: "var(--text-faint)" }}
+            >
+              Why chat AI falls short
+            </span>
+            <p
+              className="mt-3 text-[15px] leading-[1.6]"
+              style={{ color: "var(--text-muted)" }}
+            >
+              Out-of-the-box chat hallucinates, formats inconsistently, and never
+              learns from corrections. Selby Lane tried it first — the output
+              required so much editing that the team couldn&apos;t trust it. The
+              harness above is what changed that.
+            </p>
+          </div>
           <span
             className="inline-flex items-center gap-2 text-sm"
             style={{ color: "var(--text-faint)" }}
           >
             <Lock size={14} strokeWidth={1.75} />
-            On your machines, your cloud, your retention policy. Zero new attack vectors.
+            On your machines. Zero new attack vectors.
           </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Beliefs() {
+  return (
+    <section
+      className="border-t border-[var(--border)] relative overflow-hidden"
+      style={{ background: "var(--background)" }}
+    >
+      <div
+        className="lui-grid lui-grid--soft pointer-events-none absolute inset-0"
+        aria-hidden
+      />
+      <div className="relative mx-auto w-full max-w-[var(--container-max)] px-5 py-20 sm:px-8 sm:py-24">
+        <div className="grid gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
+          <span
+            className="font-mono-label whitespace-nowrap"
+            style={{ color: "var(--accent)" }}
+          >
+            Our thesis
+          </span>
+          <div className="max-w-[760px]">
+            <p
+              className="font-display text-[clamp(26px,3.6vw,42px)] leading-[1.18]"
+              style={{
+                fontFamily: "var(--font-display), Georgia, serif",
+                fontWeight: 600,
+                color: "var(--text-strong)",
+                letterSpacing: "-0.005em",
+              }}
+            >
+              The best investment firms of this decade will be the ones that
+              embrace applied AI.{" "}
+              <span style={{ color: "var(--text-muted)" }}>
+                The competitive edge isn&apos;t the model — it&apos;s the harness
+                around it. The teams that build that edge now will compound it
+                for the next twenty-five years.
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -701,6 +764,7 @@ export default function Home() {
         <Workflows />
         <Approach />
         <CaseStudy />
+        <Beliefs />
         <CTA />
       </main>
       <Footer />
