@@ -2,7 +2,6 @@ import {
   ArrowRight,
   Check,
   FileText,
-  GitBranch,
   LayoutGrid,
   Loader,
   Lock,
@@ -10,7 +9,6 @@ import {
   Search,
   Shield,
   Sparkles,
-  Workflow,
 } from "lucide-react";
 
 const CLIENTS = ["Selby Lane Capital", "Resolute Ventures", "Prehype Ventures"];
@@ -100,6 +98,12 @@ function Header() {
             className="text-sm text-[var(--text-muted)] transition-colors duration-150 hover:text-[var(--text-strong)]"
           >
             Workflows
+          </a>
+          <a
+            href="#engagements"
+            className="text-sm text-[var(--text-muted)] transition-colors duration-150 hover:text-[var(--text-strong)]"
+          >
+            How we work
           </a>
           <a
             href="#approach"
@@ -381,6 +385,107 @@ function Workflows() {
             style={{ color: "var(--accent)" }}
           >
             Get in touch
+          </a>
+          .
+        </p>
+      </div>
+    </section>
+  );
+}
+
+const ENGAGEMENTS = [
+  {
+    label: "À la carte",
+    title: "Pick a workflow.",
+    body: "Choose one or more agents from the catalog. We map the workflow, build the harness, and deploy in your environment.",
+    meta: "6–8 weeks · Fixed scope",
+  },
+  {
+    label: "Embedded",
+    title: "FDE inside your team.",
+    body: "A forward-deployed engineer embedded with your investment team. We build whatever the desk needs, without the overhead of hiring.",
+    meta: "Quarterly · Renews",
+  },
+  {
+    label: "Custom build",
+    title: "Scope to outcome.",
+    body: "A bespoke build: full-stack web, mobile, or desktop software wired into your AI workflows. Quoted to spec.",
+    meta: "To scope",
+  },
+];
+
+function Engagements() {
+  return (
+    <section
+      id="engagements"
+      className="section-y border-t border-[var(--border)]"
+    >
+      <div className="mx-auto w-full max-w-[var(--container-max)] px-5 sm:px-8">
+        <div className="max-w-3xl">
+          <span className="eyebrow">
+            <span className="font-mono-label">How we work</span>
+          </span>
+          <h2 className="sec-head mt-5">
+            Three ways to engage. One bar for quality.
+          </h2>
+          <p className="lead mt-5 max-w-[640px]">
+            Flat fee. No per-seat surprise. No agency markup. We stay until the
+            agent earns its keep — or you don&apos;t pay for the next phase.
+          </p>
+        </div>
+
+        <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 md:mt-12">
+          {ENGAGEMENTS.map((e) => (
+            <li
+              key={e.label}
+              className="surface-card flex flex-col gap-4 p-6 transition-all duration-150 hover:border-[var(--border-strong)] sm:p-7"
+            >
+              <span
+                className="font-mono-label"
+                style={{ color: "var(--accent)" }}
+              >
+                {e.label}
+              </span>
+              <h3
+                className="font-display text-[22px] font-semibold leading-[1.15]"
+                style={{
+                  fontFamily: "var(--font-display), Georgia, serif",
+                  color: "var(--text-strong)",
+                  letterSpacing: "-0.005em",
+                }}
+              >
+                {e.title}
+              </h3>
+              <p
+                className="text-[15px] leading-[1.6]"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {e.body}
+              </p>
+              <span
+                className="font-mono-label mt-auto pt-2"
+                style={{
+                  color: "var(--text-faint)",
+                  borderTop: "1px solid var(--border)",
+                }}
+              >
+                {e.meta}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <p
+          className="mt-8 text-sm"
+          style={{ color: "var(--text-faint)" }}
+        >
+          Something else in mind?{" "}
+          <a
+            href="#cta"
+            className="underline-offset-4 transition-colors hover:underline"
+            style={{ color: "var(--accent)" }}
+          >
+            Tell us what you&apos;re trying to build
           </a>
           .
         </p>
@@ -694,6 +799,11 @@ function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#engagements" className="hover:text-[var(--text-strong)] transition-colors">
+                  How we work
+                </a>
+              </li>
+              <li>
                 <a href="#approach" className="hover:text-[var(--text-strong)] transition-colors">
                   Approach
                 </a>
@@ -762,6 +872,7 @@ export default function Home() {
         <Hero />
         <TrustedBy />
         <Workflows />
+        <Engagements />
         <Approach />
         <CaseStudy />
         <Beliefs />
