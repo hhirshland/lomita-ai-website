@@ -27,9 +27,7 @@ export default function Home() {
       <section className="relative z-10">
         <div className="mx-auto w-full max-w-[var(--container-max)] px-8 pt-24 pb-20 md:pt-32 md:pb-28">
           <span className="eyebrow">
-            <span className="font-mono-label">
-              AI transformation for investment firms
-            </span>
+            <span className="font-mono-label">Applied AI</span>
           </span>
 
           <h1
@@ -48,15 +46,12 @@ export default function Home() {
             AI <span style={{ color: "var(--text-strong)" }}>today</span>.
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-9">
             <a
               href="mailto:hello@lomita.ai"
               className="lui-btn lui-btn--primary lui-btn--lg"
             >
               Work with us
-            </a>
-            <a href="#trusted-by" className="lui-btn lui-btn--secondary lui-btn--lg">
-              See who we work with
             </a>
           </div>
         </div>
@@ -65,25 +60,41 @@ export default function Home() {
       <section
         id="trusted-by"
         className="relative z-10 border-t border-[var(--border)]"
-        style={{ background: "var(--surface-alt)" }}
+        style={{ background: "var(--surface-well)" }}
       >
-        <div className="mx-auto w-full max-w-[var(--container-max)] px-8 py-14">
-          <span className="font-mono-label" style={{ color: "var(--text-faint)" }}>
-            Trusted by
-          </span>
-          <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-3">
+        <div className="mx-auto w-full max-w-[var(--container-max)] px-8 py-16">
+          <div className="flex items-center gap-4">
+            <span
+              className="font-mono-label"
+              style={{ color: "var(--text-faint)" }}
+            >
+              Trusted by
+            </span>
+            <span
+              aria-hidden
+              className="h-px flex-1"
+              style={{ background: "var(--border)" }}
+            />
+          </div>
+
+          <ul className="mt-10 grid grid-cols-1 divide-y divide-[var(--border)] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {CLIENTS.map((client) => (
               <li
                 key={client}
-                className="font-display text-[clamp(20px,2.2vw,26px)]"
-                style={{
-                  color: "var(--text-strong)",
-                  fontFamily: "var(--font-display), Georgia, serif",
-                  fontWeight: 600,
-                  letterSpacing: "-0.005em",
-                }}
+                className="group flex items-center justify-center px-6 py-6 transition-colors duration-150 first:pl-0 last:pr-0 sm:py-4"
               >
-                {client}
+                <span
+                  className="text-center text-[clamp(20px,2.2vw,26px)] transition-colors duration-150 group-hover:text-[var(--text-strong)]"
+                  style={{
+                    color: "var(--text-body)",
+                    fontFamily: "var(--font-display), Georgia, serif",
+                    fontWeight: 600,
+                    letterSpacing: "-0.005em",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {client}
+                </span>
               </li>
             ))}
           </ul>
