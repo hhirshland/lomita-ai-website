@@ -136,9 +136,15 @@
   --color-positive: var(--positive-400);
   --color-negative: var(--negative-400);
 
-  --font-sans: var(--font-inter-tight);
-  --font-display: var(--font-source-serif);
-  --font-mono: var(--font-jetbrains-mono);
+  /* Fallbacks live *inside* the var() on purpose: if the next/font variable
+     is ever missing at render time (e.g. its CSS not yet applied on a slow
+     mobile load), an unresolved var() would make the whole font-family
+     declaration invalid and silently inherit the body's sans-serif. Keeping a
+     same-category generic here makes the wordmark/headings degrade to a serif
+     instead of flipping to sans-serif. */
+  --font-sans: var(--font-inter-tight, system-ui, -apple-system, sans-serif);
+  --font-display: var(--font-source-serif, Georgia, "Times New Roman", serif);
+  --font-mono: var(--font-jetbrains-mono, ui-monospace, SFMono-Regular, monospace);
 }
 
 /* ── Base ─────────────────────────────────────────────────────────────────── */
