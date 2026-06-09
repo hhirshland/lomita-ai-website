@@ -149,7 +149,7 @@ function Hero() {
               AI agents for your investment firm.
             </h1>
 
-            <p className="lead mt-6 max-w-[600px]">
+            <p className="lead mt-7 max-w-[600px]">
               We build and deploy production-grade AI agents that create
               operating leverage for investment firms — wired into the tools
               your team already uses, live in weeks, not quarters. We stay
@@ -324,7 +324,7 @@ function Workflows() {
           <h2 className="sec-head mt-5">
             Put your firm&apos;s most tedious workflows on autopilot.
           </h2>
-          <p className="lead mt-5 max-w-[640px]">
+          <p className="lead mt-6 max-w-[640px]">
             You shouldn&apos;t be paying investment analysts $200k+ a year to
             parse data rooms, copy-paste cells, and format charts. We deploy
             agents to offload these tasks so your team can focus on higher
@@ -428,7 +428,7 @@ function Engagements() {
           <h2 className="sec-head mt-5">
             Three ways to engage. One bar for quality.
           </h2>
-          <p className="lead mt-5 max-w-[640px]">
+          <p className="lead mt-6 max-w-[640px]">
             Flat fee. No per-seat surprise. No agency markup. We stay until the
             agent earns its keep — or you don&apos;t pay for the next phase.
           </p>
@@ -509,7 +509,7 @@ function Approach() {
           <h2 className="sec-head mt-5">
             The harness that gives the model everything it needs to do the job.
           </h2>
-          <p className="lead mt-5 max-w-[660px]">
+          <p className="lead mt-6 max-w-[660px]">
             Off-the-shelf chat AI hallucinates, formats inconsistently, and never
             learns from its mistakes. Production grade looks like this.
           </p>
@@ -734,7 +734,7 @@ function CTA() {
             <h2 className="sec-head mt-5">
               Deploy a similar agent for your fund.
             </h2>
-            <p className="lead mt-4">
+            <p className="lead mt-6">
               Tell us about the workflow eating your team&apos;s time. We&apos;ll
               map it and show you what production-grade looks like — in a single
               working session.
