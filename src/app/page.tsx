@@ -16,28 +16,34 @@ const CLIENTS = ["Selby Lane Capital", "Resolute Ventures", "Prehype Ventures"];
 const WORKFLOWS = [
   {
     icon: FileText,
-    name: "Investment Memo Agent",
-    body: "Extracts the data room, validates against source documents, runs analysis, and drafts a firm-styled memo. 4 days → 30 minutes.",
-    tag: "Flagship",
+    name: "Investment Memo",
+    body: "Extracts the data room, runs analysis, and drafts a firm-styled memo in ~30 minutes.",
+    tag: "Investment Team",
     accent: true,
-  },
-  {
-    icon: Search,
-    name: "Opportunity Screener",
-    body: "Surfaces and ranks inbound and outbound deals against your thesis, with the rationale auditable end-to-end.",
-    tag: "Pipeline",
   },
   {
     icon: Shield,
     name: "Legal Diligence",
     body: "Reads the legal data room, flags non-standard terms, and assembles an issues list against your fund's red lines.",
-    tag: "Diligence",
+    tag: "Legal",
   },
   {
     icon: Radio,
     name: "Portfolio News Tracker",
-    body: "Monitors portfolio companies across sources and surfaces what changed — with citations, not summaries.",
-    tag: "Monitoring",
+    body: "Monitors portfolio news to keep your team and LPs up to date at all times.",
+    tag: "Investor Relations",
+  },
+  {
+    icon: Search,
+    name: "Company Tear Sheets & Screeners",
+    body: "Surfaces and ranks inbound and outbound deals against your fund's thesis and extracts key information for easy review.",
+    tag: "Investment Team",
+  },
+  {
+    icon: Sparkles,
+    name: "Pre-meeting Briefs",
+    body: "One-page briefs assembled from the CRM, prior notes, news, and the data room before the meeting starts.",
+    tag: "Sales",
   },
   {
     icon: LayoutGrid,
@@ -45,38 +51,32 @@ const WORKFLOWS = [
     body: "Reconciles fund metrics across the data warehouse, GP reports, and the CRM until the numbers tie.",
     tag: "Operations",
   },
-  {
-    icon: Sparkles,
-    name: "Pre-meeting Briefs",
-    body: "One-page briefs assembled from the CRM, prior notes, news, and the data room before the meeting starts.",
-    tag: "Workflow",
-  },
 ];
 
 const PILLARS = [
   {
     n: "01",
-    label: "Process mapping",
-    h: "Map the workflow as it exists today",
-    body: "What steps happen in what order, with which inputs and outputs, and who is involved. The map becomes the SOP we hand the agent.",
+    label: "Identify the problem",
+    h: "Find the process worth automating",
+    body: "We start by exploring the workflows across your organization to identify the highest-leverage opportunities. A good workflow is one that is performed regularly and has a consistent set of inputs (triggers) and outputs (actions).",
   },
   {
     n: "02",
-    label: "Tribal knowledge",
-    h: "Encode the context that lives in people's heads",
-    body: "Connect CRMs, data warehouses, and inboxes over MCP. Embed reference docs and style guides. Document the unspoken rules.",
+    label: "Process mapping",
+    h: "Map the workflow as it exists today",
+    body: "We define how the work gets done today: a flow chart mapping out what steps happen in what order, what inputs and outputs are expected, and who is involved. This mapping becomes the SOP we use to build and train the agent.",
   },
   {
     n: "03",
-    label: "Feedback loop",
-    h: "Train the agent run over run",
-    body: "A continuous-learning system aggregates human corrections so the agent stops repeating the same mistakes. Without this, runs stay stuck in the teaching phase forever.",
+    label: "Tribal knowledge",
+    h: "Encode the context that the agent needs",
+    body: "Connect CRMs, data warehouses, and inboxes via MCP. Embed reference docs, gold standards, and style guides. Document the unspoken rules that live in people's heads.",
   },
   {
     n: "04",
-    label: "Accuracy & security",
-    h: "Source-linked, adversarially reviewed, private by default",
-    body: "Every metric links to its source. Separate agents cross-check until conflicts resolve. Data stays on your machines, on zero-retention models.",
+    label: "Learning loop",
+    h: "Train the agent run over run",
+    body: "We deploy all agents with a continuous learning system that aggregates human feedback, adversarial reviews to prevent hallucinations, and automated evals each run so the agent stops repeating the same mistakes. Your agents go from “new hire” to autopilot.",
   },
 ];
 
@@ -112,10 +112,10 @@ function Header() {
             Approach
           </a>
           <a
-            href="#case-study"
+            href="#security"
             className="text-sm text-[var(--text-muted)] transition-colors duration-150 hover:text-[var(--text-strong)]"
           >
-            Case study
+            Security
           </a>
         </nav>
 
@@ -151,9 +151,8 @@ function Hero() {
 
             <p className="lead mt-7 max-w-[600px]">
               We build and deploy production-grade AI agents that create
-              operating leverage for investment firms — wired into the tools
-              your team already uses, live in weeks, not quarters. We stay
-              until it works.
+              operating leverage for investment firms. Live in weeks,
+              integrated into the tools your team already uses.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
@@ -164,8 +163,8 @@ function Hero() {
                 Work with us
                 <ArrowRight size={18} strokeWidth={1.75} />
               </a>
-              <a href="#case-study" className="lui-btn lui-btn--secondary lui-btn--lg">
-                Read the Selby Lane case study
+              <a href="#workflows" className="lui-btn lui-btn--secondary lui-btn--lg">
+                View our agents
               </a>
             </div>
 
@@ -273,6 +272,11 @@ function TrustedBy() {
     >
       <div className="mx-auto w-full max-w-[var(--container-max)] px-5 py-14 sm:px-8 sm:py-16">
         <div className="flex items-center gap-4">
+          <span
+            aria-hidden
+            className="h-px flex-1"
+            style={{ background: "var(--border)" }}
+          />
           <span className="font-mono-label" style={{ color: "var(--text-faint)" }}>
             Trusted by
           </span>
@@ -375,10 +379,10 @@ function Workflows() {
         </ul>
 
         <p
-          className="mt-8 text-sm"
+          className="mt-12 text-center text-sm"
           style={{ color: "var(--text-faint)" }}
         >
-          Need something custom? We&apos;ll scope it.{" "}
+          Need something else? We&apos;ll scope it.{" "}
           <a
             href="#cta"
             className="underline-offset-4 transition-colors hover:underline"
@@ -397,19 +401,19 @@ const ENGAGEMENTS = [
   {
     label: "À la carte",
     title: "Pick a workflow.",
-    body: "Choose one or more agents from the catalog. We map the workflow, build the harness, and deploy in your environment.",
+    body: "Choose one or more agents to implement. We map the workflow, build the harness, and deploy in your environment.",
     meta: "~8 weeks · Fixed scope",
   },
   {
     label: "Embedded",
     title: "FDE inside your team.",
-    body: "A forward-deployed engineer embedded with your investment team. We build whatever the desk needs, without the overhead of hiring.",
+    body: "A forward-deployed engineer embedded within your team. We'll drive your internal AI deployment across the board, without the overhead of hiring.",
     meta: "Quarterly · Renews",
   },
   {
-    label: "Custom build",
-    title: "Scope to outcome.",
-    body: "A bespoke build: full-stack web, mobile, or desktop software wired into your AI workflows. Quoted to spec.",
+    label: "Lomita OS",
+    title: "Your own agentic platform.",
+    body: "Run your agentic workflows on top of our agentic platform: a customized full-stack application wired up with your firm's workflows, your firm's context, and MCP connections. Integrated evals, performance tuning, multi-player functionality, and scheduled tasks.",
     meta: "To scope",
   },
 ];
@@ -426,12 +430,8 @@ function Engagements() {
             <span className="font-mono-label">How we work</span>
           </span>
           <h2 className="sec-head mt-5">
-            Three ways to engage. One bar for quality.
+            Three ways to engage.
           </h2>
-          <p className="lead mt-6 max-w-[640px]">
-            Flat fee. No per-seat surprise. No agency markup. We stay until the
-            agent earns its keep — or you don&apos;t pay for the next phase.
-          </p>
         </div>
 
         <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 md:mt-12">
@@ -476,7 +476,7 @@ function Engagements() {
         </ul>
 
         <p
-          className="mt-8 text-sm"
+          className="mt-12 text-center text-sm"
           style={{ color: "var(--text-faint)" }}
         >
           Something else in mind?{" "}
@@ -504,14 +504,16 @@ function Approach() {
       <div className="mx-auto w-full max-w-[var(--container-max)] px-5 sm:px-8">
         <div className="max-w-3xl">
           <span className="eyebrow">
-            <span className="font-mono-label">What production-grade takes</span>
+            <span className="font-mono-label">From prototype to production</span>
           </span>
           <h2 className="sec-head mt-5">
-            The harness that gives the model everything it needs to do the job.
+            Friction-free finance agents.
           </h2>
           <p className="lead mt-6 max-w-[660px]">
-            Off-the-shelf chat AI hallucinates, formats inconsistently, and never
-            learns from its mistakes. Production grade looks like this.
+            Off-the-shelf chatbots hallucinate, format inconsistently, and
+            don&apos;t learn from their mistakes. We help you deploy the AI
+            harness that gives the model everything it needs to do the job
+            accurately and reliably.
           </p>
         </div>
 
@@ -546,29 +548,30 @@ function Approach() {
           ))}
         </ol>
 
-        <div className="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
-          <div
-            className="surface-card p-5 sm:p-6"
-            style={{ background: "var(--background)" }}
-          >
-            <span
-              className="font-mono-label"
-              style={{ color: "var(--text-faint)" }}
-            >
-              Why chat AI falls short
-            </span>
-            <p
-              className="mt-3 text-[15px] leading-[1.6]"
-              style={{ color: "var(--text-muted)" }}
-            >
-              Out-of-the-box chat hallucinates, formats inconsistently, and never
-              learns from corrections. Selby Lane tried it first — the output
-              required so much editing that the team couldn&apos;t trust it. The
-              harness above is what changed that.
-            </p>
-          </div>
+      </div>
+    </section>
+  );
+}
+
+function Security() {
+  return (
+    <section
+      id="security"
+      className="section-y border-t border-[var(--border)]"
+    >
+      <div className="mx-auto w-full max-w-[var(--container-max)] px-5 sm:px-8">
+        <div className="max-w-3xl">
+          <span className="eyebrow">
+            <span className="font-mono-label">Security</span>
+          </span>
+          <h2 className="sec-head mt-5">Secure, by default.</h2>
+          <p className="lead mt-6 max-w-[660px]">
+            Data stays on your machines or in your servers by default to avoid
+            introducing any new attack vectors. We recommend running your
+            agents on zero-retention models so your data stays yours.
+          </p>
           <span
-            className="inline-flex items-center gap-2 text-sm"
+            className="mt-8 inline-flex items-center gap-2 text-sm"
             style={{ color: "var(--text-faint)" }}
           >
             <Lock size={14} strokeWidth={1.75} />
@@ -577,144 +580,6 @@ function Approach() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Beliefs() {
-  return (
-    <section
-      className="border-t border-[var(--border)] relative overflow-hidden"
-      style={{ background: "var(--background)" }}
-    >
-      <div
-        className="lui-grid lui-grid--soft pointer-events-none absolute inset-0"
-        aria-hidden
-      />
-      <div className="relative mx-auto w-full max-w-[var(--container-max)] px-5 py-20 sm:px-8 sm:py-24">
-        <div className="grid gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
-          <span
-            className="font-mono-label whitespace-nowrap"
-            style={{ color: "var(--accent)" }}
-          >
-            Our thesis
-          </span>
-          <div className="max-w-[760px]">
-            <p
-              className="font-display text-[clamp(26px,3.6vw,42px)] leading-[1.18]"
-              style={{
-                fontFamily: "var(--font-display), Georgia, serif",
-                fontWeight: 600,
-                color: "var(--text-strong)",
-                letterSpacing: "-0.005em",
-              }}
-            >
-              The best investment firms of this decade will be the ones that
-              embrace applied AI.{" "}
-              <span style={{ color: "var(--text-muted)" }}>
-                The competitive edge isn&apos;t the model — it&apos;s the harness
-                around it. The teams that build that edge now will compound it
-                for the next twenty-five years.
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CaseStudy() {
-  return (
-    <section
-      id="case-study"
-      className="section-y border-t border-[var(--border)] relative overflow-hidden"
-    >
-      <div
-        className="lui-grid lui-grid--soft pointer-events-none absolute inset-0 opacity-50"
-        aria-hidden
-      />
-      <div className="relative mx-auto w-full max-w-[var(--container-max)] px-5 sm:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <div>
-            <span className="eyebrow">
-              <span className="font-mono-label">Case study · Selby Lane</span>
-            </span>
-            <p
-              className="mt-6 font-display text-[clamp(22px,3vw,32px)] leading-[1.3]"
-              style={{
-                fontFamily: "var(--font-display), Georgia, serif",
-                fontWeight: 600,
-                color: "var(--text-strong)",
-                letterSpacing: "-0.005em",
-              }}
-            >
-              &ldquo;What used to take four days of analyst work is now turned
-              around in thirty minutes — and every figure ties back to a source
-              document.&rdquo;
-            </p>
-            <p
-              className="mt-5 font-mono-label"
-              style={{ color: "var(--text-faint)" }}
-            >
-              Investment Memo Agent · Deployed 2026
-            </p>
-            <a
-              href="#cta"
-              className="lui-btn lui-btn--secondary mt-7 inline-flex"
-            >
-              Talk to us about your workflow
-              <ArrowRight size={16} strokeWidth={1.75} />
-            </a>
-          </div>
-
-          <CaseStats />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-type CaseStat = {
-  label: string;
-  value: string;
-  delta: string;
-  tone: "up" | "flat";
-};
-
-const CASE_STATS: CaseStat[] = [
-  { label: "Turnaround", value: "30 min", delta: "▲ from 4 days", tone: "up" },
-  { label: "Coverage gain", value: "5×", delta: "▲ opportunities", tone: "up" },
-  { label: "Source-linked", value: "100%", delta: "— every figure", tone: "flat" },
-  { label: "New attack vectors", value: "0", delta: "— by default", tone: "flat" },
-];
-
-function CaseStats() {
-  return (
-    <div className="hairline-grid hairline-grid--surface">
-      {CASE_STATS.map((s) => (
-        <div key={s.label} className="p-6 sm:p-7">
-          <span className="lui-stat__label">{s.label}</span>
-          <span
-            className="mt-2 block font-display"
-            style={{
-              fontFamily: "var(--font-display), Georgia, serif",
-              fontWeight: 600,
-              fontSize: "clamp(28px, 4vw, 40px)",
-              color: "var(--text-strong)",
-              letterSpacing: "-0.01em",
-              lineHeight: 1,
-            }}
-          >
-            {s.value}
-          </span>
-          <span
-            className={`mt-2 lui-stat__delta lui-stat__delta--${s.tone}`}
-          >
-            {s.delta}
-          </span>
-        </div>
-      ))}
-    </div>
   );
 }
 
@@ -732,7 +597,7 @@ function CTA() {
               <span className="font-mono-label">Get started</span>
             </span>
             <h2 className="sec-head mt-5">
-              Deploy your first agent for your fund.
+              Deploy your fund&apos;s first agent.
             </h2>
             <p className="lead mt-6">
               Tell us about the workflows eating your team&apos;s time. We&apos;ll
@@ -742,18 +607,18 @@ function CTA() {
 
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row md:flex-col">
             <a
-              href="mailto:hello@lomita.ai?subject=Working%20session"
+              href="mailto:henry@lomita.ai?subject=Intro%20call"
               className="lui-btn lui-btn--primary lui-btn--lg w-full sm:w-auto"
             >
-              Book a working session
+              Book an intro call
               <ArrowRight size={18} strokeWidth={1.75} />
             </a>
             <a
-              href="mailto:hello@lomita.ai"
+              href="mailto:henry@lomita.ai"
               className="lui-btn lui-btn--ghost lui-btn--lg w-full sm:w-auto"
               style={{ justifyContent: "center" }}
             >
-              hello@lomita.ai
+              henry@lomita.ai
             </a>
           </div>
         </div>
@@ -808,8 +673,8 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#case-study" className="hover:text-[var(--text-strong)] transition-colors">
-                  Case study
+                <a href="#security" className="hover:text-[var(--text-strong)] transition-colors">
+                  Security
                 </a>
               </li>
             </ul>
@@ -824,10 +689,10 @@ function Footer() {
             <ul className="mt-4 space-y-2 text-sm" style={{ color: "var(--text-muted)" }}>
               <li>
                 <a
-                  href="mailto:hello@lomita.ai"
+                  href="mailto:henry@lomita.ai"
                   className="hover:text-[var(--text-strong)] transition-colors"
                 >
-                  hello@lomita.ai
+                  henry@lomita.ai
                 </a>
               </li>
               <li>
@@ -855,7 +720,7 @@ function Footer() {
             className="font-mono-label"
             style={{ color: "var(--text-faint)" }}
           >
-            Built for the firms allocating to the AI era
+            AI agents for your investment firm
           </span>
         </div>
       </div>
@@ -873,8 +738,7 @@ export default function Home() {
         <Workflows />
         <Engagements />
         <Approach />
-        <CaseStudy />
-        <Beliefs />
+        <Security />
         <CTA />
       </main>
       <Footer />
