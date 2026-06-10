@@ -508,17 +508,15 @@ a { color: inherit; text-decoration: none; }
 }
 
 .agentcarousel__stage {
-  position: relative;
+  /* Stack all cards in a single grid cell so the stage auto-sizes to the
+     tallest card (no fixed height to overflow when text wraps on mobile). */
+  display: grid;
   width: 100%;
-  /* Reserve height for the tallest card so side cards can sit absolutely. */
-  min-height: 312px;
   perspective: 1600px;
 }
 
 .agentcarousel__card {
-  position: absolute;
-  top: 0;
-  left: 50%;
+  grid-area: 1 / 1;
   width: 100%;
   transform-origin: center center;
   transition:
@@ -530,7 +528,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Center · the focused agent run */
 .agentcarousel__card--center {
-  transform: translateX(-50%) scale(1);
+  transform: translateX(0) scale(1);
   opacity: 1;
   z-index: 3;
   filter: none;
@@ -538,15 +536,15 @@ a { color: inherit; text-decoration: none; }
 
 /* Side cards · smaller and tucked behind, peeking on either edge */
 .agentcarousel__card--left {
-  transform: translateX(-70%) scale(0.83);
-  opacity: 0.5;
+  transform: translateX(-13%) scale(0.82);
+  opacity: 0.46;
   z-index: 1;
   filter: saturate(0.7) brightness(0.88);
 }
 
 .agentcarousel__card--right {
-  transform: translateX(-30%) scale(0.83);
-  opacity: 0.5;
+  transform: translateX(13%) scale(0.82);
+  opacity: 0.46;
   z-index: 1;
   filter: saturate(0.7) brightness(0.88);
 }
@@ -579,6 +577,18 @@ a { color: inherit; text-decoration: none; }
 .agentcarousel__dot.is-active {
   width: 20px;
   background: var(--accent);
+}
+
+/* On narrow screens there isn't room for side cards to peek without being
+   clipped at the viewport edges, so collapse them behind the centered card
+   and let the active card cross-fade through. */
+@media (max-width: 640px) {
+  .agentcarousel__card--left,
+  .agentcarousel__card--right {
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
