@@ -1,15 +1,15 @@
 import {
   ArrowRight,
-  Check,
   FileText,
   LayoutGrid,
-  Loader,
   Lock,
   Radio,
   Search,
   Shield,
   Sparkles,
 } from "lucide-react";
+
+import AgentCarousel from "./AgentCarousel";
 
 const CLIENTS = ["Selby Lane Capital", "Resolute Ventures", "Prehype Ventures"];
 
@@ -187,79 +187,10 @@ function Hero() {
             </div>
           </div>
 
-          <RunPanel />
+          <AgentCarousel />
         </div>
       </div>
     </section>
-  );
-}
-
-function RunPanel() {
-  return (
-    <div className="runpanel w-full">
-      <div className="runpanel__bar">
-        <span className="runpanel__dot" />
-        <span className="runpanel__dot" />
-        <span className="runpanel__dot" />
-        <span className="runpanel__title">investment-memo-agent · run #1184</span>
-        <span className="lui-badge lui-badge--accent ml-auto">
-          <span className="lui-badge__dot" />
-          Running
-        </span>
-      </div>
-
-      <div className="runpanel__row">
-        <span
-          className="runpanel__ic"
-          style={{ background: "var(--positive-wash)", color: "var(--positive-400)" }}
-        >
-          <Check size={15} strokeWidth={2} />
-        </span>
-        <span className="runpanel__t">
-          <b>Extract</b> · 142 figures from data room
-        </span>
-        <span className="runpanel__meta">done</span>
-      </div>
-
-      <div className="runpanel__row">
-        <span
-          className="runpanel__ic"
-          style={{ background: "var(--positive-wash)", color: "var(--positive-400)" }}
-        >
-          <Check size={15} strokeWidth={2} />
-        </span>
-        <span className="runpanel__t">
-          <b>Validate</b> · cross-referenced 9 sources
-        </span>
-        <span className="runpanel__meta">done</span>
-      </div>
-
-      <div className="runpanel__row">
-        <span
-          className="runpanel__ic runpanel__pulse"
-          style={{ background: "var(--accent-wash)", color: "var(--accent)" }}
-        >
-          <Loader size={15} strokeWidth={2} />
-        </span>
-        <span className="runpanel__t">
-          <b>Analyze</b> · building charts & tables
-        </span>
-        <span className="runpanel__meta">02:14</span>
-      </div>
-
-      <div className="runpanel__row">
-        <span
-          className="runpanel__ic"
-          style={{ background: "var(--surface-alt)", color: "var(--text-faint)" }}
-        >
-          <FileText size={15} strokeWidth={2} />
-        </span>
-        <span className="runpanel__t" style={{ color: "var(--text-faint)" }}>
-          <b style={{ color: "var(--text-muted)" }}>Draft memo</b> · firm style guide
-        </span>
-        <span className="runpanel__meta">queued</span>
-      </div>
-    </div>
   );
 }
 
