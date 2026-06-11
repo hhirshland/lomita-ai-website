@@ -2,7 +2,7 @@
 
 import { Check, FileText, Loader } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { ComponentType } from "react";
+import type { ComponentType, TouchEvent } from "react";
 
 type RowState = "done" | "active" | "queued";
 
@@ -50,6 +50,7 @@ const PANELS: Panel[] = [
 ];
 
 const CYCLE_MS = 4200;
+const SWIPE_MIN_PX = 48;
 
 function RowIcon({ row }: { row: Row }) {
   if (row.state === "done") {
@@ -121,26 +122,57 @@ const POSITIONS = ["center", "right", "left"] as const;
 export default function AgentCarousel() {
   const [active, setActive] = useState(0);
   const reducedRef = useRef(false);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     reducedRef.current =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+
+  // Keyed on `active` so any manual navigation (swipe, dot) restarts the
+  // timer instead of rotating away from the card the user just picked.
+  useEffect(() => {
     if (reducedRef.current) return;
-    const id = window.setInterval(() => {
+    const id = window.setTimeout(() => {
       setActive((i) => (i + 1) % PANELS.length);
     }, CYCLE_MS);
-    return () => window.clearInterval(id);
-  }, []);
+    return () => window.clearTimeout(id);
+  }, [active]);
 
   const positionFor = useCallback(
     (index: number) => POSITIONS[(index - active + PANELS.length) % PANELS.length],
     [active],
   );
 
+  const onTouchStart = useCallback((e: TouchEvent) => {
+    const t = e.touches[0];
+    touchStartRef.current = { x: t.clientX, y: t.clientY };
+  }, []);
+
+  const onTouchEnd = useCallback((e: TouchEvent) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    // Ignore taps and mostly-vertical gestures so page scrolling stays free.
+    if (Math.abs(dx) < SWIPE_MIN_PX || Math.abs(dx) < Math.abs(dy)) return;
+    const step = dx < 0 ? 1 : -1;
+    setActive((i) => (i + step + PANELS.length) % PANELS.length);
+  }, []);
+
   return (
     <div className="agentcarousel">
-      <div className="agentcarousel__stage">
+      <div
+        className="agentcarousel__stage"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={() => {
+          touchStartRef.current = null;
+        }}
+      >
         {PANELS.map((panel, i) => {
           const pos = positionFor(i);
           return (

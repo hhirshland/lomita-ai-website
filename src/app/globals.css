@@ -530,6 +530,9 @@ a { color: inherit; text-decoration: none; }
   display: grid;
   width: 100%;
   perspective: 1600px;
+  /* Keep vertical page scrolling native while horizontal swipes drive the
+     carousel's touch handlers. */
+  touch-action: pan-y;
 }
 
 .agentcarousel__card {
