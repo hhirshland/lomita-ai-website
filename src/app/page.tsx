@@ -11,45 +11,48 @@ import {
 
 import AgentCarousel from "./AgentCarousel";
 
-const CLIENTS = ["Selby Lane Capital", "Resolute Ventures", "Prehype Ventures"];
+const CLIENTS = [
+  { name: "Selby Lane Capital", url: "https://selbylane.com/" },
+  { name: "Resolute Ventures", url: "https://www.resolute.vc/" },
+  { name: "Prehype Ventures", url: "https://prehype.com/" },
+];
 
 const WORKFLOWS = [
   {
     icon: FileText,
     name: "Investment Memo",
     body: "Extracts the data room, runs analysis, and drafts a firm-styled memo in ~30 minutes.",
-    tag: "Investment Team",
-    accent: true,
+    tags: ["Investment Team"],
   },
   {
     icon: Shield,
     name: "Legal Diligence",
     body: "Reads the legal data room, flags non-standard terms, and assembles an issues list against your fund's red lines.",
-    tag: "Legal",
+    tags: ["Legal"],
   },
   {
     icon: Radio,
     name: "Portfolio News Tracker",
     body: "Monitors portfolio news to keep your team and LPs up to date at all times.",
-    tag: "Investor Relations",
+    tags: ["Investor Relations"],
   },
   {
     icon: Search,
     name: "Company Tear Sheets & Screeners",
     body: "Surfaces and ranks inbound and outbound deals against your fund's thesis and extracts key information for easy review.",
-    tag: "Investment Team",
+    tags: ["Investment Team"],
   },
   {
     icon: Sparkles,
     name: "Pre-meeting Briefs",
     body: "One-page briefs assembled from the CRM, prior notes, news, and the data room before the meeting starts.",
-    tag: "Sales",
+    tags: ["Investment Team", "Sales"],
   },
   {
     icon: LayoutGrid,
     name: "Portfolio Data Reconciliation",
     body: "Reconciles fund metrics across the data warehouse, GP reports, and the CRM until the numbers tie.",
-    tag: "Operations",
+    tags: ["Operations"],
   },
 ];
 
@@ -146,7 +149,7 @@ function Hero() {
             </span>
 
             <h1 className="headline mt-6 max-w-[20ch]">
-              AI agents for your investment firm.
+              AI agents for your investment firm
             </h1>
 
             <p className="lead mt-7 max-w-[600px]">
@@ -170,19 +173,19 @@ function Hero() {
 
             <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-[var(--border)] pt-8 sm:grid-cols-3 sm:gap-8">
               <div className="lui-stat">
-                <span className="lui-stat__label">Time to memo</span>
+                <span className="lui-stat__label">Memo turnaround</span>
                 <span className="lui-stat__value" style={{ fontSize: "clamp(28px, 4vw, 36px)" }}>30 min</span>
-                <span className="lui-stat__delta lui-stat__delta--up">▲ from 4 days</span>
+                <span className="lui-stat__delta lui-stat__delta--up">▼ from 4 days</span>
               </div>
               <div className="lui-stat">
-                <span className="lui-stat__label">Coverage gain</span>
+                <span className="lui-stat__label">Memos per week</span>
                 <span className="lui-stat__value" style={{ fontSize: "clamp(28px, 4vw, 36px)" }}>5×</span>
-                <span className="lui-stat__delta lui-stat__delta--up">▲ opportunities</span>
+                <span className="lui-stat__delta lui-stat__delta--up">vs. without agent</span>
               </div>
               <div className="lui-stat col-span-2 sm:col-span-1">
-                <span className="lui-stat__label">Metrics source-linked</span>
-                <span className="lui-stat__value" style={{ fontSize: "clamp(28px, 4vw, 36px)" }}>100%</span>
-                <span className="lui-stat__delta lui-stat__delta--flat">— every figure</span>
+                <span className="lui-stat__label">Data extraction</span>
+                <span className="lui-stat__value" style={{ fontSize: "clamp(28px, 4vw, 36px)" }}>&gt;99%</span>
+                <span className="lui-stat__delta lui-stat__delta--up">accuracy, first pass</span>
               </div>
             </div>
           </div>
@@ -221,10 +224,13 @@ function TrustedBy() {
         <ul className="mt-8 grid grid-cols-1 divide-y divide-[var(--border)] sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:mt-10">
           {CLIENTS.map((client) => (
             <li
-              key={client}
-              className="group flex items-center justify-center px-4 py-5 first:pl-0 last:pr-0 sm:py-3"
+              key={client.name}
+              className="group flex items-center justify-center px-4 py-5 sm:py-3 sm:first:pl-0 sm:last:pr-0"
             >
-              <span
+              <a
+                href={client.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-center text-[clamp(20px,2.2vw,28px)] transition-colors duration-150 group-hover:text-[var(--text-strong)]"
                 style={{
                   color: "var(--text-body)",
@@ -234,8 +240,8 @@ function TrustedBy() {
                   lineHeight: 1.1,
                 }}
               >
-                {client}
-              </span>
+                {client.name}
+              </a>
             </li>
           ))}
         </ul>
@@ -257,7 +263,7 @@ function Workflows() {
             <span className="font-mono-label">Agentic Workflows</span>
           </span>
           <h2 className="sec-head mt-5">
-            Put your firm&apos;s most tedious workflows on autopilot.
+            Put your firm&apos;s most tedious workflows on autopilot
           </h2>
           <p className="lead mt-6 max-w-[640px]">
             You shouldn&apos;t be paying investment analysts $200k+ a year to
@@ -268,7 +274,7 @@ function Workflows() {
         </div>
 
         <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
-          {WORKFLOWS.map(({ icon: Icon, name, body, tag, accent }) => (
+          {WORKFLOWS.map(({ icon: Icon, name, body, tags }) => (
             <li
               key={name}
               className="group surface-card flex flex-col gap-4 p-5 transition-all duration-150 hover:-translate-y-0.5 hover:border-[var(--border-strong)] sm:p-6"
@@ -302,8 +308,10 @@ function Workflows() {
                   {body}
                 </p>
               </div>
-              <div className="mt-auto">
-                <span className={`lui-tag ${accent ? "lui-tag--accent" : ""}`}>{tag}</span>
+              <div className="mt-auto flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span key={tag} className="lui-tag">{tag}</span>
+                ))}
               </div>
             </li>
           ))}
@@ -331,19 +339,19 @@ function Workflows() {
 const ENGAGEMENTS = [
   {
     label: "À la carte",
-    title: "Pick a workflow.",
+    title: "Pick a workflow",
     body: "Choose one or more agents to implement. We map the workflow, build the harness, and deploy in your environment.",
     meta: "~8 weeks · Fixed scope",
   },
   {
     label: "Embedded",
-    title: "FDE inside your team.",
+    title: "FDE inside your team",
     body: "A forward-deployed engineer embedded within your team. We'll drive your internal AI deployment across the board, without the overhead of hiring.",
     meta: "Quarterly · Renews",
   },
   {
     label: "Lomita OS",
-    title: "Your own agentic platform.",
+    title: "Your own agentic platform",
     body: "Run your agentic workflows on top of our agentic platform: a customized full-stack application wired up with your firm's workflows, your firm's context, and MCP connections. Integrated evals, performance tuning, multi-player functionality, and scheduled tasks.",
     meta: "To scope",
   },
@@ -361,7 +369,7 @@ function Engagements() {
             <span className="font-mono-label">How we work</span>
           </span>
           <h2 className="sec-head mt-5">
-            Three ways to engage.
+            Three ways to engage
           </h2>
         </div>
 
@@ -438,7 +446,7 @@ function Approach() {
             <span className="font-mono-label">From prototype to production</span>
           </span>
           <h2 className="sec-head mt-5">
-            Friction-free finance agents.
+            Friction-free finance agents
           </h2>
           <p className="lead mt-6 max-w-[660px]">
             Off-the-shelf chatbots hallucinate, format inconsistently, and
@@ -495,7 +503,7 @@ function Security() {
           <span className="eyebrow">
             <span className="font-mono-label">Security</span>
           </span>
-          <h2 className="sec-head mt-5">Secure, by default.</h2>
+          <h2 className="sec-head mt-5">Secure, by default</h2>
           <p className="lead mt-6 max-w-[660px]">
             Data stays on your machines or in your servers by default to avoid
             introducing any new attack vectors. We recommend running your
@@ -528,7 +536,7 @@ function CTA() {
               <span className="font-mono-label">Get started</span>
             </span>
             <h2 className="sec-head mt-5">
-              Deploy your fund&apos;s first agent.
+              Deploy your fund&apos;s first agent
             </h2>
             <p className="lead mt-6">
               Tell us about the workflows eating your team&apos;s time. We&apos;ll

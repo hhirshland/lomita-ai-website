@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, FileText, Loader, Search, Shield } from "lucide-react";
+import { Check, FileText, Loader } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ComponentType } from "react";
 
@@ -35,7 +35,7 @@ const PANELS: Panel[] = [
       { state: "done", label: "Ingest", text: "38 contracts from legal room", meta: "done" },
       { state: "done", label: "Classify", text: "214 clauses tagged", meta: "done" },
       { state: "active", label: "Flag", text: "matching against fund red lines", meta: "01:38" },
-      { state: "queued", label: "Issues list", text: "counsel-ready export", meta: "queued", icon: Shield },
+      { state: "queued", label: "Issues list", text: "counsel-ready export", meta: "queued", icon: FileText },
     ],
   },
   {
@@ -44,7 +44,7 @@ const PANELS: Panel[] = [
       { state: "done", label: "Enrich", text: "27 sources reconciled", meta: "done" },
       { state: "done", label: "Score", text: "thesis fit vs. fund filters", meta: "done" },
       { state: "active", label: "Compose", text: "metrics, summary & comps", meta: "00:52" },
-      { state: "queued", label: "Tear sheet", text: "one-pager export", meta: "queued", icon: Search },
+      { state: "queued", label: "Tear sheet", text: "one-pager export", meta: "queued", icon: FileText },
     ],
   },
 ];
